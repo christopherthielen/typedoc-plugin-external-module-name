@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "allowJs": true,
+    "module": "umd",
+    "target": "es5",
+    "outDir": "./",
+    "experimentalDecorators": true
+  },
+  "files": [ "plugin.ts", "typings/index.d.ts", "node_modules/typedoc/src/typings/typescript/typescript.d.ts" ]
+}

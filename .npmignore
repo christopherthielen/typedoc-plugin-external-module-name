@@ -1,0 +1,4 @@
+*.ipr
+*.iws
+*.iml
+node_modules

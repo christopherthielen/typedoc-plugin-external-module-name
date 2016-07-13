@@ -1,0 +1,21 @@
+{
+  "name": "typedoc-plugin-external-module-name",
+  "version": "1.0.2",
+  "description": "Specify the Typedoc Module of a file using @module annotation",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [ "typedocplugin", "typedoc" ],
+  "repository" : { 
+    "type" : "git",
+    "url" : "https://github.com/christopherthielen/typedoc-plugin-external-module-name"
+  },
+  "author": "Chris Thielen",
+  "license": "MIT",
+  "dependencies": {
+    "typedoc": "^0.4.4",
+    "typescript": "^1.8.10",
+    "typings": "^1.3.1"
+  }
+}
