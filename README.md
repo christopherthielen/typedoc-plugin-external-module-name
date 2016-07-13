@@ -1,11 +1,36 @@
-#### typedoc-plugin-external-module-name
+## typedoc-plugin-external-module-name
+
+### What
 
 A plugin for http://typedoc.io
 
 When using ES6 modules in Typedoc, each file gets its own listing in "External Modules", i.e., "Globals".
 This can be annoying, for projects that utilize one file per class, for instance.
 
+Suppose your source files are organized like this:
+
+```
+thing1/foo.ts
+thing1/bar.ts
+thing2/baz.ts
+thing2/qux.ts
+```
+
+Typedoc will create four "External Modules":
+
+- "thing1/foo"
+- "thing1/bar"
+- "thing2/baz"
+- "thing2/qux"
+
 This plugin allows each file to specify the Typedoc External Module its code should belong to.
+If multiple files belong to the same module, they are merged.
+
+This allows more control over the modules that Typedoc generates.
+Instead of the four modules above, we could group them into two:
+
+- thing1
+- thing2
 
 ### Installing
 
@@ -23,22 +48,46 @@ Add a comment block at the top of the file (ES6 module).
 Specify the Typedoc External Module using the `@module` annotation.
 A known issue: The comment block must be followed by another comment block for some reason (?).
 
+#### thing1/foo.ts
 ```js
 /**
- * @module foo
- */ 
+ * @module thing1
+ */
 /** second comment block */
+
+// foo stuff
+```
+
+#### thing1/bar.ts
+```js
+/**
+ * @module thing1
+ */ /** */
+
+// bar stuff
+```
+
+#### thing2/baz.ts
+```js
+/**
+ * @module thing2
+ */ /** */
+
+// baz stuff
 ```
 
 Multiple files may point to the same ES6 module.
 To specify the which file's comment block will be used to document the Typedoc Module page, use `@preferred`
 
+#### thing2/qux.ts
 ```js
 /**
- * @module foo
+ * @module thing2
  * @preferred
  *
- * This comment will be used to document the "foo" module.
- */ 
-/** second comment block */
+ * This comment will be used to document the "thing2" module.
+ */ /** */
+
+// qux stuff
 ```
+
