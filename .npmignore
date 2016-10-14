@@ -2,3 +2,6 @@
 *.iws
 *.iml
 node_modules
+typings
+typings.json
+tsconfig.json

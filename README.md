@@ -2,7 +2,7 @@
 
 ### What
 
-A plugin for http://typedoc.io
+A plugin for [Typedoc](http://typedoc.org)
 
 When using ES6 modules in Typedoc, each file gets its own listing in "External Modules", i.e., "Globals".
 This can be annoying, for projects that utilize one file per class, for instance.
