@@ -1,6 +1,0 @@
-{
-  "globalDependencies": {
-    "handlebars": "registry:dt/handlebars#3.0.3+20160317120654",
-    "typescript": "registry:dt/typescript#0.4.0+20160317120654"
-  }
-}
