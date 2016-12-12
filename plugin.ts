@@ -79,6 +79,9 @@ export class ExternalModuleNamePlugin extends ConverterComponent
         });
       }
     }
+
+    CommentPlugin.removeTags(reflection.comment, 'module');
+    CommentPlugin.removeTags(reflection.comment, 'preferred');
   }
 
 
