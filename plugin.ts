@@ -1,10 +1,10 @@
-import {Reflection, ReflectionKind} from "typedoc/lib/models/reflections/abstract";
-import {Component, ConverterComponent} from "typedoc/lib/converter/components";
-import {Converter} from "typedoc/lib/converter/converter";
-import {Context} from "typedoc/lib/converter/context";
-import {CommentPlugin} from "typedoc/lib/converter/plugins/CommentPlugin";
-import {ContainerReflection} from "typedoc/lib/models/reflections/container";
-import {getRawComment} from "typedoc/lib/converter/factories/comment";
+import {Reflection, ReflectionKind} from "typedoc/dist/lib/models/reflections/abstract";
+import {Component, ConverterComponent} from "typedoc/dist/lib/converter/components";
+import {Converter} from "typedoc/dist/lib/converter/converter";
+import {Context} from "typedoc/dist/lib/converter/context";
+import {CommentPlugin} from "typedoc/dist/lib/converter/plugins/CommentPlugin";
+import {ContainerReflection} from "typedoc/dist/lib/models/reflections/container";
+import {getRawComment} from "typedoc/dist/lib/converter/factories/comment";
 
 
 /**
