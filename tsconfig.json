@@ -8,8 +8,7 @@
     "experimentalDecorators": true
   },
   "files": [
-    "plugin.ts",
-    "node_modules/typedoc/lib/converter/ts-internal.d.ts"
+    "plugin.ts"
   ],
   "exclude": [
     "node_modules"

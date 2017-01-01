@@ -1,11 +1,10 @@
 {
   "name": "typedoc-plugin-external-module-name",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Specify the Typedoc Module of a file using @module annotation",
   "main": "index.js",
   "scripts": {
-    "build": "tsc",
-    "publish": "node publish.js"
+    "build": "tsc"
   },
   "keywords": [
     "typedocplugin",
@@ -19,7 +18,7 @@
   "license": "MIT",
   "dependencies": {
     "typedoc": "^0.5.3",
-    "typescript": "^2.0.3"
+    "typescript": "^2.1.1"
   },
   "devDependencies": {
     "@types/handlebars": "^4.0.31"
