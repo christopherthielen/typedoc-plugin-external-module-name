@@ -67,7 +67,7 @@ export class ExternalModuleNamePlugin extends ConverterComponent
     if (reflection.kindOf(ReflectionKind.ExternalModule)) {
       let comment = getRawComment(node);
       // Look for @module
-      let match = /@module\s+([a-zA-Z-_\/]+)/.exec(comment);
+      let match = /@module\s+([\w-_/]+)/.exec(comment);
       if (match) {
         // Look for @preferred
         let preferred = /@preferred/.exec(comment);
