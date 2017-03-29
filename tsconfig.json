@@ -8,7 +8,8 @@
     "experimentalDecorators": true
   },
   "files": [
-    "plugin.ts"
+    "plugin.ts",
+    "getRawComment.ts"
   ],
   "exclude": [
     "node_modules"

@@ -3,7 +3,8 @@
 *.iml
 
 # Built using tsc
-plugin.js 
+plugin.js
+getRawComment.js
 
 # Logs
 logs
