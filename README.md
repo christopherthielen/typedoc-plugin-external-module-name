@@ -46,14 +46,12 @@ typedoc
 
 Add a comment block at the top of the file (ES6 module).
 Specify the Typedoc External Module using the `@module` annotation.
-A known issue: The comment block must be followed by another comment block for some reason (?).
 
 #### thing1/foo.ts
 ```js
 /**
  * @module thing1
  */
-/** second comment block */
 
 // foo stuff
 ```
@@ -62,7 +60,7 @@ A known issue: The comment block must be followed by another comment block for s
 ```js
 /**
  * @module thing1
- */ /** */
+ */
 
 // bar stuff
 ```
@@ -71,7 +69,7 @@ A known issue: The comment block must be followed by another comment block for s
 ```js
 /**
  * @module thing2
- */ /** */
+ */
 
 // baz stuff
 ```
@@ -86,7 +84,7 @@ To specify the which file's comment block will be used to document the Typedoc M
  * @preferred
  *
  * This comment will be used to document the "thing2" module.
- */ /** */
+ */
 
 // qux stuff
 ```

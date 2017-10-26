@@ -4,7 +4,7 @@ import {Converter} from "typedoc/dist/lib/converter/converter";
 import {Context} from "typedoc/dist/lib/converter/context";
 import {CommentPlugin} from "typedoc/dist/lib/converter/plugins/CommentPlugin";
 import {ContainerReflection} from "typedoc/dist/lib/models/reflections/container";
-import {getRawComment} from "typedoc/dist/lib/converter/factories/comment";
+import getRawComment from "./getRawComment";
 
 
 /**
