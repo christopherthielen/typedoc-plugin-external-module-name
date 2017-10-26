@@ -4,7 +4,7 @@
   "description": "Specify the Typedoc Module of a file using @module annotation",
   "main": "index.js",
   "scripts": {
-    "build": "tsc",
+    "build": "node_modules/.bin/tsc",
     "prepublish": "npm run build"
   },
   "keywords": [
@@ -18,11 +18,11 @@
   "author": "Chris Thielen",
   "license": "MIT",
   "peerDependencies": {
-    "typedoc": "^0.5.3"
+    "typedoc": "^0.8.0"
   },
   "devDependencies": {
     "@types/handlebars": "^4.0.31",
-    "typedoc": "^0.5.3",
-    "typescript": "^2.1.1"
+    "typedoc": "^0.8.0",
+    "typescript": "2.2.2"
   }
 }
