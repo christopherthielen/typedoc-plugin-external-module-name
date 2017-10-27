@@ -1,10 +1,10 @@
+**/.*
 *.ipr
 *.iws
 *.iml
 
 # Built using tsc
 plugin.js
-getRawComment.js
 
 # Logs
 logs

@@ -7,10 +7,7 @@
     "outDir": "./",
     "experimentalDecorators": true
   },
-  "files": [
-    "plugin.ts",
-    "getRawComment.ts"
-  ],
+  "files": [ "plugin.ts" ],
   "exclude": [
     "node_modules"
   ]

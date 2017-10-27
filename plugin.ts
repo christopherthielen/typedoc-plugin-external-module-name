@@ -1,11 +1,10 @@
 import {Reflection, ReflectionKind} from "typedoc/dist/lib/models/reflections/abstract";
+import {Comment} from "typedoc/dist/lib/models/comments/index";
 import {Component, ConverterComponent} from "typedoc/dist/lib/converter/components";
 import {Converter} from "typedoc/dist/lib/converter/converter";
 import {Context} from "typedoc/dist/lib/converter/context";
 import {CommentPlugin} from "typedoc/dist/lib/converter/plugins/CommentPlugin";
 import {ContainerReflection} from "typedoc/dist/lib/models/reflections/container";
-import getRawComment from "./getRawComment";
-
 
 /**
  * This plugin allows an ES6 module to specify its TypeDoc name.
@@ -65,23 +64,21 @@ export class ExternalModuleNamePlugin extends ConverterComponent
    */
   private onDeclaration(context: Context, reflection: Reflection, node?) {
     if (reflection.kindOf(ReflectionKind.ExternalModule)) {
-      let comment = getRawComment(node);
-      // Look for @module
-      let match = /@module\s+([\w\-_/@"]+)/.exec(comment);
-      if (match) {
-        // Look for @preferred
-        let preferred = /@preferred/.exec(comment);
-        // Set up a list of renames operations to perform when the resolve phase starts
-        this.moduleRenames.push({
-          renameTo: match[1],
-          preferred: preferred != null,
-          reflection: <ContainerReflection> reflection
-        });
+      let comment: Comment = reflection.comment;
+
+      if (comment && comment.tags) {
+        const module = comment.tags.filter(tag => tag.tagName === 'module')[0];
+        const preferred = comment.tags.filter(tag => tag.tagName === 'preferred')[0];
+
+        if (module) {
+          this.moduleRenames.push({
+            renameTo: module.text.trim(),
+            preferred: preferred != null,
+            reflection: <ContainerReflection> reflection
+          });
+        }
       }
     }
-
-    CommentPlugin.removeTags(reflection.comment, 'module');
-    CommentPlugin.removeTags(reflection.comment, 'preferred');
   }
 
 
@@ -121,8 +118,9 @@ export class ExternalModuleNamePlugin extends ConverterComponent
 
       // If @preferred was found on the current item, update the mergeTarget's comment
       // with comment from the renaming module
-      if (item.preferred)
+      if (item.preferred) {
         mergeTarget.comment = renaming.comment;
+      }
 
       // Now that all the children have been relocated to the mergeTarget, delete the empty module
       // Make sure the module being renamed doesn't have children, or they will be deleted
