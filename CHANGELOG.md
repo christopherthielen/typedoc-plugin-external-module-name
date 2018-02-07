@@ -1,3 +1,13 @@
+## 1.1.1 (2018-02-07)
+[Compare `typedoc-plugin-external-module-name` versions 1.1.0 and 1.1.1](https://github.com/christopherthielen/typedoc-plugin-external-module-name/compare/1.1.0...1.1.1)
+
+### Bug Fixes
+
+* **doublecomment:** Null check 'result' ([2b51576](https://github.com/christopherthielen/typedoc-plugin-external-module-name/commit/2b51576))
+
+
+
+
 # 1.1.0 (2018-02-07)
 [Compare `typedoc-plugin-external-module-name` versions 1.0.10 and 1.1.0](https://github.com/christopherthielen/typedoc-plugin-external-module-name/compare/1.0.10...1.1.0)
 
