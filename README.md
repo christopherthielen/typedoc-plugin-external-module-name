@@ -1,5 +1,7 @@
 ## typedoc-plugin-external-module-name
 
+<img src="https://api.travis-ci.org/christopherthielen/typedoc-plugin-external-module-name.svg?branch=master">
+
 ### What
 
 A plugin for [Typedoc](http://typedoc.org)
