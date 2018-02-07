@@ -6,6 +6,7 @@
   "scripts": {
     "build": "tsc",
     "test": "test_downstream_projects",
+    "release": "release",
     "prepublish": "npm run build"
   },
   "keywords": [
