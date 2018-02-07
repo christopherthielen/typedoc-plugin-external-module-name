@@ -4,7 +4,7 @@ import {Converter} from "typedoc/dist/lib/converter/converter";
 import {Context} from "typedoc/dist/lib/converter/context";
 import {CommentPlugin} from "typedoc/dist/lib/converter/plugins/CommentPlugin";
 import {ContainerReflection} from "typedoc/dist/lib/models/reflections/container";
-import getRawComment from "./getRawComment";
+import { getRawComment } from "./getRawComment";
 
 
 /**
@@ -80,8 +80,10 @@ export class ExternalModuleNamePlugin extends ConverterComponent
       }
     }
 
-    CommentPlugin.removeTags(reflection.comment, 'module');
-    CommentPlugin.removeTags(reflection.comment, 'preferred');
+    if (reflection.comment) {
+      CommentPlugin.removeTags(reflection.comment, 'module');
+      CommentPlugin.removeTags(reflection.comment, 'preferred');
+    }
   }
 
 
