@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
+    "test": "test_downstream_projects",
     "prepublish": "npm run build"
   },
   "keywords": [
@@ -22,6 +23,7 @@
   },
   "devDependencies": {
     "@types/handlebars": "^4.0.31",
+    "@uirouter/publish-scripts": "^2.2.10",
     "typedoc": "^0.5.3",
     "typescript": "^2.1.1"
   }
