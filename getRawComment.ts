@@ -15,7 +15,7 @@ function monkeyPatch() {
 
   function patchedGetJSDocCommentRanges() {
     const result = realGetJSDocCommentRanges.apply(this, arguments);
-    if (result.length === 1) {
+    if (result && result.length === 1) {
       result.push(null);
     }
     return result
