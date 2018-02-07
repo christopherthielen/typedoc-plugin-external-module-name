@@ -1,3 +1,13 @@
+# 1.1.0 (2018-02-07)
+[Compare `typedoc-plugin-external-module-name` versions 1.0.10 and 1.1.0](https://github.com/christopherthielen/typedoc-plugin-external-module-name/compare/1.0.10...1.1.0)
+
+### Bug Fixes
+
+* **doublecomment:** Monkey patch getJSDocCommentRanges instead of duplicating all of getRawComment ([c39c924](https://github.com/christopherthielen/typedoc-plugin-external-module-name/commit/c39c924))
+
+
+
+
 ## 1.0.10 (2018-02-07)
 [Compare `typedoc-plugin-external-module-name` versions 1.0.9 and 1.0.10](https://github.com/christopherthielen/typedoc-plugin-external-module-name/compare/1.0.9...1.0.10)
 
