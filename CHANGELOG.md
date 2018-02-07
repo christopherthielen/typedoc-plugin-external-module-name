@@ -8,7 +8,7 @@
 
 
 
-## 1.0.10 (2018-02-07)
+## 1.0.10 (2017-10-27)
 [Compare `typedoc-plugin-external-module-name` versions 1.0.9 and 1.0.10](https://github.com/christopherthielen/typedoc-plugin-external-module-name/compare/1.0.9...1.0.10)
 
 ### Bug Fixes
@@ -18,11 +18,11 @@
 
 
 
-## 1.0.9
+## 1.0.9 (2017-03-21)
 [Compare `typedoc-plugin-external-module-name` versions 1.0.8 and 1.0.9](https://github.com/christopherthielen/typedoc-plugin-external-module-name/compare/1.0.8...1.0.9)
 
 
-## 1.0.8
+## 1.0.8 (2017-01-17)
 [Compare `typedoc-plugin-external-module-name` versions 1.0.7 and 1.0.8](https://github.com/christopherthielen/typedoc-plugin-external-module-name/compare/1.0.7...1.0.8)
 
 ### Bug Fixes
@@ -31,15 +31,15 @@
 
 
 
-## 1.0.7
+## 1.0.7 (2017-01-01)
 [Compare `typedoc-plugin-external-module-name` versions 1.0.6 and 1.0.7](https://github.com/christopherthielen/typedoc-plugin-external-module-name/compare/1.0.6...1.0.7)
 
 
-## 1.0.6
+## 1.0.6 (2017-01-01)
 [Compare `typedoc-plugin-external-module-name` versions 1.0.5 and 1.0.6](https://github.com/christopherthielen/typedoc-plugin-external-module-name/compare/1.0.5...1.0.6)
 
 
-## 1.0.5
+## 1.0.5 (2016-12-11)
 [Compare `typedoc-plugin-external-module-name` versions 1.0.4 and 1.0.5](https://github.com/christopherthielen/typedoc-plugin-external-module-name/compare/1.0.4...1.0.5)
 
 ### Features
@@ -48,11 +48,12 @@
 
 
 
-## 1.0.4
+## 1.0.4 (2016-10-16)
 [Compare `typedoc-plugin-external-module-name` versions 1.0.3 and 1.0.4](https://github.com/christopherthielen/typedoc-plugin-external-module-name/compare/1.0.3...1.0.4)
 
 
-## 1.0.3
+## 1.0.3 (2016-10-16)
 [Compare `typedoc-plugin-external-module-name` versions 1.0.2 and 1.0.3](https://github.com/christopherthielen/typedoc-plugin-external-module-name/compare/1.0.2...1.0.3)
 
 
+## 1.0.2 (2016-07-13)
