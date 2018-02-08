@@ -23,9 +23,9 @@
     "typedoc": ">=0.7 <1.0"
   },
   "devDependencies": {
-    "@types/handlebars": "^4.0.31",
-    "@uirouter/publish-scripts": "^2.2.10",
-    "typedoc": "^0.5.3",
-    "typescript": "^2.1.1"
+    "@types/handlebars": "4.0.36",
+    "@uirouter/publish-scripts": "2.3.1",
+    "typedoc": "0.10.0",
+    "typescript": "2.7.1"
   }
 }
