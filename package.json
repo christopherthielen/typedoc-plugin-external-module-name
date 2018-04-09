@@ -7,7 +7,8 @@
     "build": "tsc",
     "test": "test_downstream_projects",
     "release": "release",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "precommit": "pretty-quick --staged"
   },
   "keywords": [
     "typedocplugin",
@@ -25,6 +26,9 @@
   "devDependencies": {
     "@types/handlebars": "4.0.36",
     "@uirouter/publish-scripts": "2.3.1",
+    "husky": "^0.14.3",
+    "prettier": "^1.11.1",
+    "pretty-quick": "^1.4.1",
     "typedoc": "0.10.0",
     "typescript": "2.7.1"
   }
