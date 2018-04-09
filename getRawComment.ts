@@ -18,7 +18,7 @@ function monkeyPatch() {
     if (result && result.length === 1) {
       result.push(null);
     }
-    return result
+    return result;
   }
 
   const tsinternal = _ts as any;
@@ -26,7 +26,7 @@ function monkeyPatch() {
 
   return function unMonkeyPatch() {
     tsinternal.getJSDocCommentRanges = realGetJSDocCommentRanges;
-  }
+  };
 }
 
 function getRawComment(node: ts.Node): string {

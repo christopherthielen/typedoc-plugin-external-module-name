@@ -1,4 +1,2 @@
 /** @module dir2 */
-export class Nest2 {
-
-}
+export class Nest2 {}
