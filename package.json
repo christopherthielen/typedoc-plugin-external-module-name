@@ -24,7 +24,7 @@
     "typedoc": ">=0.7 <1.0"
   },
   "devDependencies": {
-    "@types/handlebars": "4.0.36",
+    "@types/handlebars": "4.0.37",
     "@uirouter/publish-scripts": "2.3.1",
     "husky": "^0.14.3",
     "prettier": "^1.11.1",
