@@ -5,19 +5,14 @@
   "main": "index.js",
   "scripts": {
     "build": "typedoc --out dist src/index.ts",
-    "test": "run-s build e2e",
-    "e2e": "run-p -r browser-sync cypress",
-    "browser-sync": "browser-sync start --port 4000 --server dist --no-open",
-    "cypress": "wait-on tcp:4000 && cypress run"
+    "test": "npm run build && npm run e2e",
+    "e2e": "cypress-runner run --path dist"
   },
   "author": "Chris Thielen",
   "license": "MIT",
-  "dependencies": {
-    "browser-sync": "^2.23.6",
-    "cypress": "^1.4.2",
-    "npm-run-all": "^4.1.2",
+  "devDependencies": {
+    "@uirouter/cypress-runner": "^1.0.4",
     "typedoc": "0.8.0",
-    "typedoc-plugin-external-module-name": "latest",
-    "wait-on": "^2.1.0"
+    "typedoc-plugin-external-module-name": "latest"
   }
 }
