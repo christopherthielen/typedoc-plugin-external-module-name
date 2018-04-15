@@ -22,10 +22,10 @@ thing2/qux.ts
 
 Typedoc will create four "External Modules":
 
-- "thing1/foo"
-- "thing1/bar"
-- "thing2/baz"
-- "thing2/qux"
+* "thing1/foo"
+* "thing1/bar"
+* "thing2/baz"
+* "thing2/qux"
 
 This plugin allows each file to specify the Typedoc External Module its code should belong to.
 If multiple files belong to the same module, they are merged.
@@ -33,8 +33,8 @@ If multiple files belong to the same module, they are merged.
 This allows more control over the modules that Typedoc generates.
 Instead of the four modules above, we could group them into two:
 
-- thing1
-- thing2
+* thing1
+* thing2
 
 ### Installing
 
@@ -52,6 +52,7 @@ Add a comment block at the top of the file (ES6 module).
 Specify the Typedoc External Module using the `@module` annotation.
 
 #### thing1/foo.ts
+
 ```js
 /**
  * @module thing1
@@ -61,6 +62,7 @@ Specify the Typedoc External Module using the `@module` annotation.
 ```
 
 #### thing1/bar.ts
+
 ```js
 /**
  * @module thing1
@@ -70,6 +72,7 @@ Specify the Typedoc External Module using the `@module` annotation.
 ```
 
 #### thing2/baz.ts
+
 ```js
 /**
  * @module thing2
@@ -82,6 +85,7 @@ Multiple files may point to the same ES6 module.
 To specify the which file's comment block will be used to document the Typedoc Module page, use `@preferred`
 
 #### thing2/qux.ts
+
 ```js
 /**
  * @module thing2
@@ -93,3 +97,8 @@ To specify the which file's comment block will be used to document the Typedoc M
 // qux stuff
 ```
 
+### Caveats
+
+The `@module` annotation should be in the first comment of the file.
+For example, if your source files have license comments, they should be below the comment with `@module`.
+See [this issue](https://github.com/christopherthielen/typedoc-plugin-external-module-name/issues/21) for details.
