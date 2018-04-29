@@ -30,6 +30,6 @@
     "prettier": "^1.11.1",
     "pretty-quick": "^1.4.1",
     "typedoc": "~0.11.1",
-    "typescript": "~2.7.1"
+    "typescript": "~2.8.3"
   }
 }
