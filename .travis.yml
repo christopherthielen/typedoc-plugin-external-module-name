@@ -1,14 +1,15 @@
 language: node_js
 node_js: 8.9.1
-before_install: yarn global add greenkeeper-lockfile@1 yalc
-install: yarn --check-files
-before_script: greenkeeper-lockfile-update && greenkeeper-lockfile-upload
+before_install:
+- sh -e /etc/init.d/xvfb start
+- export PATH=$HOME/.yarn/bin:$PATH
+- curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.5.1
+env:
+  global:
+    secure: ob5WVOMMTqZchhATgoef1Ss0ZpVrfkpmVu0f8Pyftqt9hojOongtN0allkpuyfeKjgJumKqdGasciXblbI4ckJyPxwyUWD7Rth41SRvBfBeBtuKP8xSNpKQ+OKNufcKN2BwdO4/BZFzT6GHjMWa6WNNdFGQXI6wUaroWkf9iUq0uaDCG5tADaPHK1FCg+MkSpS9dUmM4kSF8Hou+Hv2IS6TNknQExbDS2grxs17a366zQvGWYbXmAZIo51mP+dcsFBmLCuDya5zPopuHJZtLMoPRyttFrnNnBX5OB+CdAHsW1PmcOv87bVjN3y1EbmF+uVjUrcRyzVpb0wGL0g2Oo82M7xCuN/fvG0pKfG6UrDS/9GGcJNPBTyOU/TfvnPQw1aIMh+hoEAfM8HWZOtruCb2wF5ohx2dB0KKAjojRad13A+QmT0rfNNtipSQL7DixotcrPGU8WR3gJecSchpJisLQU/wqjPJLiZjgptFs0d+Ic4h8ypUnd63KKDls49o0ilaAZUIVUw2IPvZJvaTFvt94m/+IK5U3fy0/hREC56HXqwBRPMpbjQG9nm3BZRMZtXaWCjQcjF0g4YWFuTPEk7XuPS9sAmGQy/mrVbmnIJLBr3OLS/kV1rVeXYNo9cXJwBl+xPFw3anm7B4LeXVbmOj/B2e1ywirmYnhejufH5M=
 sudo: false
 cache:
   yarn: true
   directories:
   - node_modules
   - ".downstream_cache"
-env:
-  global:
-    secure: ob5WVOMMTqZchhATgoef1Ss0ZpVrfkpmVu0f8Pyftqt9hojOongtN0allkpuyfeKjgJumKqdGasciXblbI4ckJyPxwyUWD7Rth41SRvBfBeBtuKP8xSNpKQ+OKNufcKN2BwdO4/BZFzT6GHjMWa6WNNdFGQXI6wUaroWkf9iUq0uaDCG5tADaPHK1FCg+MkSpS9dUmM4kSF8Hou+Hv2IS6TNknQExbDS2grxs17a366zQvGWYbXmAZIo51mP+dcsFBmLCuDya5zPopuHJZtLMoPRyttFrnNnBX5OB+CdAHsW1PmcOv87bVjN3y1EbmF+uVjUrcRyzVpb0wGL0g2Oo82M7xCuN/fvG0pKfG6UrDS/9GGcJNPBTyOU/TfvnPQw1aIMh+hoEAfM8HWZOtruCb2wF5ohx2dB0KKAjojRad13A+QmT0rfNNtipSQL7DixotcrPGU8WR3gJecSchpJisLQU/wqjPJLiZjgptFs0d+Ic4h8ypUnd63KKDls49o0ilaAZUIVUw2IPvZJvaTFvt94m/+IK5U3fy0/hREC56HXqwBRPMpbjQG9nm3BZRMZtXaWCjQcjF0g4YWFuTPEk7XuPS9sAmGQy/mrVbmnIJLBr3OLS/kV1rVeXYNo9cXJwBl+xPFw3anm7B4LeXVbmOj/B2e1ywirmYnhejufH5M=
