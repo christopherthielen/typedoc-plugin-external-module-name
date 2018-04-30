@@ -1,28 +1,28 @@
 describe('docs', () => {
   it('loads', () => {
-    cy.visit('http://localhost:4000');
+    cy.visit('');
   });
 
   it('renders dir1 external', () => {
-    cy.visit('http://localhost:4000/');
+    cy.visit('/');
     let ul = cy.get('nav.tsd-navigation.primary ul');
     ul.get('li.tsd-kind-external-module.tsd-is-external.tsd-is-external').contains('dir1');
   });
 
   it('renders dir2 external', () => {
-    cy.visit('http://localhost:4000/');
+    cy.visit('/');
     let ul = cy.get('nav.tsd-navigation.primary ul');
     ul.get('li.tsd-kind-external-module.tsd-is-external.tsd-is-external').contains('dir2');
   });
 
   it('renders root external', () => {
-    cy.visit('http://localhost:4000/');
+    cy.visit('/');
     let ul = cy.get('nav.tsd-navigation.primary ul');
     ul.get('li.tsd-kind-external-module.tsd-is-external.tsd-is-external').contains('root');
   });
 
   it('renders File1 and File2 in root', () => {
-    cy.visit('http://localhost:4000/');
+    cy.visit('/');
 
     let ul = cy
       .get('nav.tsd-navigation.primary ul')
@@ -44,7 +44,7 @@ describe('docs', () => {
   });
 
   it('renders Nest1 in dir1', () => {
-    cy.visit('http://localhost:4000/');
+    cy.visit('/');
 
     let ul = cy
       .get('nav.tsd-navigation.primary ul')
@@ -61,7 +61,7 @@ describe('docs', () => {
   });
 
   it('renders Nest2 in dir2', () => {
-    cy.visit('http://localhost:4000/');
+    cy.visit('/');
 
     let ul = cy
       .get('nav.tsd-navigation.primary ul')

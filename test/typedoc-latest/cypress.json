@@ -1,1 +1,4 @@
-{ "videoRecording": false }
+{
+  "baseUrl": "",
+  "videoRecording": false
+}
