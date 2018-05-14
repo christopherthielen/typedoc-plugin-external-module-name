@@ -56,8 +56,8 @@
     "@types/node" "*"
 
 "@uirouter/publish-scripts@^2.3.3":
-  version "2.3.17"
-  resolved "https://registry.yarnpkg.com/@uirouter/publish-scripts/-/publish-scripts-2.3.17.tgz#221268e30e5627527ca347b16e98e5e8eab6e1ea"
+  version "2.3.18"
+  resolved "https://registry.yarnpkg.com/@uirouter/publish-scripts/-/publish-scripts-2.3.18.tgz#a4b6fd07e2fc88153458e2776a56826f915ed469"
   dependencies:
     conventional-changelog "^1.1.4"
     conventional-changelog-ui-router-core "^1.4.2"
