@@ -1352,8 +1352,8 @@ pkgresolve@^1.1.4:
     minimist "~1.2.0"
 
 prettier@^1.11.1:
-  version "1.13.0"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.13.0.tgz#054de8d5fb1a4405c845d16183f58a2c301f6f16"
+  version "1.13.2"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.13.2.tgz#412b87bc561cb11074d2877a33a38f78c2303cda"
 
 pretty-bytes@^4.0.2:
   version "4.0.2"
