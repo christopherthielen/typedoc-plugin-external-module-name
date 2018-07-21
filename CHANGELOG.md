@@ -1,3 +1,13 @@
+## 1.1.3 (2018-07-21)
+[Compare `typedoc-plugin-external-module-name` versions 1.1.1 and 1.1.3](https://github.com/christopherthielen/typedoc-plugin-external-module-name/compare/1.1.1...1.1.3)
+
+### Features
+
+* **module:** Allow `.` (dot) in module names. ([26af2af](https://github.com/christopherthielen/typedoc-plugin-external-module-name/commit/26af2af))
+
+
+
+
 ## 1.1.2 (2018-04-13)
 
 [Compare `typedoc-plugin-external-module-name` versions 1.1.1 and 1.1.2](https://github.com/christopherthielen/typedoc-plugin-external-module-name/compare/1.1.1...1.1.2)
