@@ -6,12 +6,12 @@
   "scripts": {
     "build": "typedoc --out dist src/index.ts",
     "test": "npm run build && npm run e2e",
-    "e2e": "cypress-runner run --path dist"
+    "e2e": "cypress-runner run --nospa --path dist"
   },
   "author": "Chris Thielen",
   "license": "MIT",
   "devDependencies": {
-    "@uirouter/cypress-runner": "^1.0.7",
+    "@uirouter/cypress-runner": "^1.0.9",
     "typedoc": "0.11.1",
     "typedoc-plugin-external-module-name": "latest"
   }

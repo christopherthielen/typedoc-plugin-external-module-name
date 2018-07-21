@@ -55,9 +55,9 @@
     "@types/glob" "*"
     "@types/node" "*"
 
-"@uirouter/publish-scripts@^2.3.3":
-  version "2.3.19"
-  resolved "https://registry.yarnpkg.com/@uirouter/publish-scripts/-/publish-scripts-2.3.19.tgz#22cc4058c32120811ebb425f8f0ce0ca8d4ac2ad"
+"@uirouter/publish-scripts@^2.3.20":
+  version "2.3.20"
+  resolved "https://registry.yarnpkg.com/@uirouter/publish-scripts/-/publish-scripts-2.3.20.tgz#a3d57e5f134b0d05df3b2382f3cfcf6491ede786"
   dependencies:
     conventional-changelog "^2.0.1"
     conventional-changelog-ui-router-core "^1.4.2"
@@ -1386,9 +1386,9 @@ pkgresolve@^1.1.4:
   dependencies:
     minimist "~1.2.0"
 
-prettier@^1.11.1:
-  version "1.13.6"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.13.6.tgz#00ae0b777ad92f81a9e7a1df2f0470b6dab0cb44"
+prettier@^1.13.7:
+  version "1.13.7"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.13.7.tgz#850f3b8af784a49a6ea2d2eaa7ed1428a34b7281"
 
 pretty-bytes@^4.0.2:
   version "4.0.2"
@@ -1803,7 +1803,7 @@ typedoc@0.11.1, typedoc@~0.11.1:
     typedoc-default-themes "^0.5.0"
     typescript "2.7.2"
 
-typescript@2.7.2, typescript@~2.7.1:
+typescript@2.7.2, typescript@~2.7.2:
   version "2.7.2"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.7.2.tgz#2d615a1ef4aee4f574425cdff7026edf81919836"
 
