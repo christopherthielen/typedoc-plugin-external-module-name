@@ -30,7 +30,7 @@
   version "4.0.36"
   resolved "https://registry.yarnpkg.com/@types/handlebars/-/handlebars-4.0.36.tgz#ff57c77fa1ab6713bb446534ddc4d979707a3a79"
 
-"@types/handlebars@^4.0.37", "@types/handlebars@^4.0.38":
+"@types/handlebars@^4.0.38", "@types/handlebars@^4.0.39":
   version "4.0.39"
   resolved "https://registry.yarnpkg.com/@types/handlebars/-/handlebars-4.0.39.tgz#961fb54db68030890942e6aeffe9f93a957807bd"
 
@@ -80,7 +80,7 @@
     "@types/glob" "*"
     "@types/node" "*"
 
-"@uirouter/publish-scripts@^2.3.20":
+"@uirouter/publish-scripts@^2.3.21":
   version "2.3.21"
   resolved "https://registry.yarnpkg.com/@uirouter/publish-scripts/-/publish-scripts-2.3.21.tgz#5a86da78720b195e41e05a2d11fb4658b1b14d13"
   dependencies:
@@ -1432,7 +1432,7 @@ pkgresolve@^1.1.4:
   dependencies:
     minimist "~1.2.0"
 
-prettier@^1.13.7:
+prettier@^1.14.2:
   version "1.14.2"
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.14.2.tgz#0ac1c6e1a90baa22a62925f41963c841983282f9"
 
@@ -1440,7 +1440,7 @@ pretty-bytes@^4.0.2:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/pretty-bytes/-/pretty-bytes-4.0.2.tgz#b2bf82e7350d65c6c33aa95aaa5a4f6327f61cd9"
 
-pretty-quick@^1.4.1:
+pretty-quick@^1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/pretty-quick/-/pretty-quick-1.6.0.tgz#afc3591eb5c4cf37614a305d489a8a40e57c9258"
   dependencies:
