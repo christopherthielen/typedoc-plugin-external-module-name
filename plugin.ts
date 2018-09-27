@@ -1,4 +1,5 @@
 import { Reflection, ReflectionKind } from 'typedoc/dist/lib/models/reflections/abstract';
+import { DeclarationReflection } from 'typedoc/dist/lib/models/reflections/declaration';
 import { Component, ConverterComponent } from 'typedoc/dist/lib/converter/components';
 import { Converter } from 'typedoc/dist/lib/converter/converter';
 import { Context } from 'typedoc/dist/lib/converter/context';
@@ -99,20 +100,47 @@ export class ExternalModuleNamePlugin extends ConverterComponent {
     // Process each rename
     this.moduleRenames.forEach(item => {
       let renaming = <ContainerReflection>item.reflection;
-      // Find an existing module that already has the "rename to" name.  Use it as the merge target.
-      let mergeTarget = <ContainerReflection>refsArray.filter(
-        ref => ref.kind === renaming.kind && ref.name === item.renameTo,
-      )[0];
 
-      // If there wasn't a merge target, just change the name of the current module and exit.
+      // Find or create the module tree until the child's parent (each level is separated by .)
+      let nameParts = item.renameTo.split('.');
+      let parent: ContainerReflection = context.project;
+      for (let i = 0; i < nameParts.length - 1; ++i) {
+        let child: DeclarationReflection = parent.children.filter(ref => ref.name === nameParts[i])[0];
+        if (!child) {
+          child = new DeclarationReflection(parent, nameParts[i], ReflectionKind.ExternalModule);
+          child.parent = parent;
+          child.children = [];
+          context.project.reflections[child.id] = child;
+          parent.children.push(child);
+        }
+        parent = child;
+      }
+
+
+      // Find an existing module with the child's name in the last parent. Use it as the merge target.
+      let mergeTarget = <ContainerReflection>
+        parent.children.filter(ref => ref.kind === renaming.kind && ref.name === nameParts[nameParts.length - 1])[0];
+
+
+      // If there wasn't a merge target, change the name of the current module, connect it to the right parent and exit.
       if (!mergeTarget) {
-        renaming.name = item.renameTo;
+        renaming.name = nameParts[nameParts.length - 1];
+	let oldParent = <ContainerReflection> renaming.parent;
+	for (let i = 0; i < oldParent.children.length; ++i) {
+	    if (oldParent.children[i] === renaming) {
+	      oldParent.children.splice(i, 1);
+	      break;
+	    }
+	}
+        item.reflection.parent = parent;
+        parent.children.push(<DeclarationReflection>renaming);
         return;
       }
 
       if (!mergeTarget.children) {
         mergeTarget.children = [];
       }
+
 
       // Since there is a merge target, relocate all the renaming module's children to the mergeTarget.
       let childrenOfRenamed = refsArray.filter(ref => ref.parent === renaming);
