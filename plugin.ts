@@ -100,9 +100,9 @@ export class ExternalModuleNamePlugin extends ConverterComponent {
     this.moduleRenames.forEach(item => {
       let renaming = <ContainerReflection>item.reflection;
       // Find an existing module that already has the "rename to" name.  Use it as the merge target.
-      let mergeTarget = <ContainerReflection>refsArray.filter(
-        ref => ref.kind === renaming.kind && ref.name === item.renameTo,
-      )[0];
+      let mergeTarget = <ContainerReflection>(
+        refsArray.filter(ref => ref.kind === renaming.kind && ref.name === item.renameTo)[0]
+      );
 
       // If there wasn't a merge target, just change the name of the current module and exit.
       if (!mergeTarget) {
