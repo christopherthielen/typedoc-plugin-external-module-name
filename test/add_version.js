@@ -26,6 +26,6 @@ package.devDependencies.typedoc = version;
 fs.writeFileSync(PACKAGEJSON, JSON.stringify(package, null, 2));
 
 const downstreams = JSON.parse(fs.readFileSync(DOWNSTREAMS));
-downstreams.projects = downstream.projects || {};
+downstreams.projects = downstreams.projects || {};
 downstreams.projects[DIR] = `./test/${DIR}`;
 fs.writeFileSync(DOWNSTREAMS, JSON.stringify(downstreams, null, 2));
