@@ -1,3 +1,13 @@
+# 2.0.0 (2019-01-09)
+[Compare `typedoc-plugin-external-module-name` versions 1.1.3 and 2.0.0](https://github.com/christopherthielen/typedoc-plugin-external-module-name/compare/1.1.3...2.0.0)
+
+### Bug Fixes
+
+* Switch to emitting ES2015 to account for Typedoc emitting ES2015 in https://github.com/TypeStrong/typedoc/pull/845 ([00a4ae8](https://github.com/christopherthielen/typedoc-plugin-external-module-name/commit/00a4ae8))
+
+
+
+
 ## 1.1.3 (2018-07-21)
 [Compare `typedoc-plugin-external-module-name` versions 1.1.1 and 1.1.3](https://github.com/christopherthielen/typedoc-plugin-external-module-name/compare/1.1.1...1.1.3)
 
