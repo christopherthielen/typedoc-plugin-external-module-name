@@ -3,15 +3,10 @@
     "moduleResolution": "node",
     "allowJs": true,
     "module": "umd",
-    "target": "es5",
+    "target": "es2015",
     "outDir": "./",
     "experimentalDecorators": true
   },
-  "files": [
-    "plugin.ts",
-    "getRawComment.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "files": ["plugin.ts", "getRawComment.ts"],
+  "exclude": ["node_modules"]
 }

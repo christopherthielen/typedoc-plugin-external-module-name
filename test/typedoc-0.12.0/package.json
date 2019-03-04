@@ -1,0 +1,18 @@
+{
+  "name": "external-module-name-typedoc-0.12.0",
+  "version": "1.0.0",
+  "description": "Test against typedoc 0.12.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "typedoc --out dist src/index.ts",
+    "test": "npm run build && npm run e2e",
+    "e2e": "cypress-runner run --nospa --path dist"
+  },
+  "author": "Chris Thielen",
+  "license": "MIT",
+  "devDependencies": {
+    "@uirouter/cypress-runner": "latest",
+    "typedoc": "0.12.0",
+    "typedoc-plugin-external-module-name": "latest"
+  }
+}

@@ -32,13 +32,11 @@ describe('docs', () => {
 
     cy.contains('External module root');
 
-    cy
-      .get('ul.tsd-index-list')
+    cy.get('ul.tsd-index-list')
       .get('a')
       .contains('File1');
 
-    cy
-      .get('ul.tsd-index-list')
+    cy.get('ul.tsd-index-list')
       .get('a')
       .contains('File2');
   });
@@ -54,8 +52,7 @@ describe('docs', () => {
 
     cy.contains('External module dir1');
 
-    cy
-      .get('ul.tsd-index-list')
+    cy.get('ul.tsd-index-list')
       .get('a')
       .contains('Nest1');
   });
@@ -71,8 +68,7 @@ describe('docs', () => {
 
     cy.contains('External module dir2');
 
-    cy
-      .get('ul.tsd-index-list')
+    cy.get('ul.tsd-index-list')
       .get('a')
       .contains('Nest2');
   });

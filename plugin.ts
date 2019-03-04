@@ -116,22 +116,21 @@ export class ExternalModuleNamePlugin extends ConverterComponent {
         parent = child;
       }
 
-
       // Find an existing module with the child's name in the last parent. Use it as the merge target.
-      let mergeTarget = <ContainerReflection>
-        parent.children.filter(ref => ref.kind === renaming.kind && ref.name === nameParts[nameParts.length - 1])[0];
-
+      let mergeTarget = <ContainerReflection>(
+        parent.children.filter(ref => ref.kind === renaming.kind && ref.name === nameParts[nameParts.length - 1])[0]
+      );
 
       // If there wasn't a merge target, change the name of the current module, connect it to the right parent and exit.
       if (!mergeTarget) {
         renaming.name = nameParts[nameParts.length - 1];
-	let oldParent = <ContainerReflection> renaming.parent;
-	for (let i = 0; i < oldParent.children.length; ++i) {
-	    if (oldParent.children[i] === renaming) {
-	      oldParent.children.splice(i, 1);
-	      break;
-	    }
-	}
+        let oldParent = <ContainerReflection>renaming.parent;
+        for (let i = 0; i < oldParent.children.length; ++i) {
+          if (oldParent.children[i] === renaming) {
+            oldParent.children.splice(i, 1);
+            break;
+          }
+        }
         item.reflection.parent = parent;
         parent.children.push(<DeclarationReflection>renaming);
         return;
@@ -140,7 +139,6 @@ export class ExternalModuleNamePlugin extends ConverterComponent {
       if (!mergeTarget.children) {
         mergeTarget.children = [];
       }
-
 
       // Since there is a merge target, relocate all the renaming module's children to the mergeTarget.
       let childrenOfRenamed = refsArray.filter(ref => ref.parent === renaming);
