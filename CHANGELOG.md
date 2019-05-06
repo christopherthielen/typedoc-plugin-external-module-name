@@ -1,3 +1,13 @@
+# 2.1.0 (2019-05-06)
+[Compare `typedoc-plugin-external-module-name` versions 2.0.0 and 2.1.0](https://github.com/christopherthielen/typedoc-plugin-external-module-name/compare/2.0.0...2.1.0)
+
+### Features
+
+* Support submodules (modules are separated by '.') ([793d0ae](https://github.com/christopherthielen/typedoc-plugin-external-module-name/commit/793d0ae))
+
+
+
+
 # 2.0.0 (2019-01-09)
 [Compare `typedoc-plugin-external-module-name` versions 1.1.3 and 2.0.0](https://github.com/christopherthielen/typedoc-plugin-external-module-name/compare/1.1.3...2.0.0)
 

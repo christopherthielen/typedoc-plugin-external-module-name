@@ -1,6 +1,6 @@
 {
   "name": "typedoc-plugin-external-module-name",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Specify the Typedoc Module of a file using @module annotation",
   "main": "index.js",
   "scripts": {
