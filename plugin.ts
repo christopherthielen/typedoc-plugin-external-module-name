@@ -107,7 +107,7 @@ export class ExternalModuleNamePlugin extends ConverterComponent {
       for (let i = 0; i < nameParts.length - 1; ++i) {
         let child: DeclarationReflection = parent.children.filter(ref => ref.name === nameParts[i])[0];
         if (!child) {
-          child = new DeclarationReflection(parent, nameParts[i], ReflectionKind.ExternalModule);
+          child = new DeclarationReflection(nameParts[i], ReflectionKind.ExternalModule, parent);
           child.parent = parent;
           child.children = [];
           context.project.reflections[child.id] = child;

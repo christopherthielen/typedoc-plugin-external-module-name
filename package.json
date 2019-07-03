@@ -28,8 +28,8 @@
     "husky": "^2.2.0",
     "prettier": "^1.13.7",
     "pretty-quick": "^1.4.1",
-    "typedoc": "~0.11.1",
-    "typescript": "~2.7.2"
+    "typedoc": "~0.14.2",
+    "typescript": "~3.2.4"
   },
   "husky": {
     "hooks": {
