@@ -28,7 +28,7 @@
     "husky": "^2.2.0",
     "prettier": "^1.13.7",
     "pretty-quick": "^1.4.1",
-    "typedoc": "~0.11.1",
+    "typedoc": "~0.15.0",
     "typescript": "~2.7.2"
   },
   "husky": {
