@@ -22,10 +22,10 @@ thing2/qux.ts
 
 Typedoc will create four "External Modules":
 
-* "thing1/foo"
-* "thing1/bar"
-* "thing2/baz"
-* "thing2/qux"
+- "thing1/foo"
+- "thing1/bar"
+- "thing2/baz"
+- "thing2/qux"
 
 This plugin allows each file to specify the Typedoc External Module its code should belong to.
 If multiple files belong to the same module, they are merged.
@@ -33,16 +33,16 @@ If multiple files belong to the same module, they are merged.
 This allows more control over the modules that Typedoc generates.
 Instead of the four modules above, we could group them into two:
 
-* thing1
-* thing2
+- thing1
+- thing2
 
 ### Installing
 
-Typedoc 0.4 has the ability to discover and load typedoc plugins found in node_modules.
+Typedoc has the ability to discover and load typedoc plugins found in node_modules.
 Simply install the plugin and run typedoc.
 
 ```
-npm install --save typedoc-plugin-external-module-name
+npm install -D typedoc-plugin-external-module-name
 typedoc
 ```
 
@@ -50,11 +50,14 @@ typedoc
 
 Add a comment block at the top of the file (ES6 module).
 Specify the Typedoc External Module using the `@module` annotation.
+Mark the comment block as `@packageDocumentation` to let typedoc know that this is documentation for the file itself
+(see: [Typedoc Docs](https://typedoc.org/guides/doccomments/#files)).
 
 #### thing1/foo.ts
 
 ```js
 /**
+ * @packageDocumentation
  * @module thing1
  */
 
@@ -65,6 +68,7 @@ Specify the Typedoc External Module using the `@module` annotation.
 
 ```js
 /**
+ * @packageDocumentation
  * @module thing1
  */
 
@@ -75,30 +79,26 @@ Specify the Typedoc External Module using the `@module` annotation.
 
 ```js
 /**
+ * @packageDocumentation
  * @module thing2
  */
 
 // baz stuff
 ```
 
-Multiple files may point to the same ES6 module.
+Multiple files may point to the same typedoc module.
 To specify the which file's comment block will be used to document the Typedoc Module page, use `@preferred`
 
 #### thing2/qux.ts
 
 ```js
 /**
+ * This comment will be used to document the "thing2" module.
+
+ * @packageDocumentation
  * @module thing2
  * @preferred
- *
- * This comment will be used to document the "thing2" module.
  */
 
 // qux stuff
 ```
-
-### Caveats
-
-The `@module` annotation should be in the first comment of the file.
-For example, if your source files have license comments, they should be below the comment with `@module`.
-See [this issue](https://github.com/christopherthielen/typedoc-plugin-external-module-name/issues/21) for details.
