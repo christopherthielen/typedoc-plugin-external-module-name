@@ -22,10 +22,10 @@ thing2/qux.ts
 
 Typedoc will create four "External Modules":
 
-- "thing1/foo"
-- "thing1/bar"
-- "thing2/baz"
-- "thing2/qux"
+- `thing1/foo`
+- `thing1/bar`
+- `thing2/baz`
+- `thing2/qux`
 
 This plugin allows each file to specify the Typedoc External Module its code should belong to.
 If multiple files belong to the same module, they are merged.
@@ -33,8 +33,8 @@ If multiple files belong to the same module, they are merged.
 This allows more control over the modules that Typedoc generates.
 Instead of the four modules above, we could group them into two:
 
-- thing1
-- thing2
+- `thing1`
+- `thing2`
 
 ### Installing
 
