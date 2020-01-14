@@ -41,6 +41,28 @@ describe('docs', () => {
       .contains('File2');
   });
 
+  it('renders File1 doc comment', () => {
+    cy.visit('/');
+
+    cy.get('a')
+      .contains('root')
+      .click();
+    cy.get('a')
+      .contains('File1')
+      .click();
+
+    cy.contains('This is in the root module');
+  });
+
+  it('does not render empty comment blocks where @module used to be', () => {
+    cy.visit('/');
+
+    cy.get('a')
+      .contains('root')
+      .click();
+    cy.get('section.tsd-comment').should('not.exist');
+  });
+
   it('renders Nest1 in dir1', () => {
     cy.visit('/');
 

@@ -1,10 +1,11 @@
-import { Reflection, ReflectionKind } from 'typedoc/dist/lib/models/reflections/abstract';
-import { DeclarationReflection } from 'typedoc/dist/lib/models/reflections/declaration';
 import { Component, ConverterComponent } from 'typedoc/dist/lib/converter/components';
-import { Converter } from 'typedoc/dist/lib/converter/converter';
 import { Context } from 'typedoc/dist/lib/converter/context';
+import { Converter } from 'typedoc/dist/lib/converter/converter';
 import { CommentPlugin } from 'typedoc/dist/lib/converter/plugins/CommentPlugin';
+import { Comment } from 'typedoc/dist/lib/models';
+import { Reflection, ReflectionKind } from 'typedoc/dist/lib/models/reflections/abstract';
 import { ContainerReflection } from 'typedoc/dist/lib/models/reflections/container';
+import { DeclarationReflection } from 'typedoc/dist/lib/models/reflections/declaration';
 import { getRawComment } from './getRawComment';
 
 /**
@@ -63,7 +64,7 @@ export class ExternalModuleNamePlugin extends ConverterComponent {
    * @param node  The node that is currently processed if available.
    */
   private onDeclaration(context: Context, reflection: Reflection, node?) {
-    if (reflection.kindOf(ReflectionKind.ExternalModule)) {
+    if (reflection.kindOf(ReflectionKind.ExternalModule) || reflection.kindOf(ReflectionKind.Module)) {
       let comment = getRawComment(node);
       // Look for @module
       let match = /@module\s+([\w\u4e00-\u9fa5\.\-_/@"]+)/.exec(comment);
@@ -160,8 +161,15 @@ export class ExternalModuleNamePlugin extends ConverterComponent {
       // Remove @module and @preferred from the comment, if found.
       CommentPlugin.removeTags(mergeTarget.comment, 'module');
       CommentPlugin.removeTags(mergeTarget.comment, 'preferred');
+      if (isEmptyComment(mergeTarget.comment)) {
+        delete mergeTarget.comment;
+      }
     });
   }
+}
+
+function isEmptyComment(comment: Comment) {
+  return !comment || (!comment.text && !comment.shortText && (!comment.tags || comment.tags.length === 0));
 }
 
 interface ModuleRename {
