@@ -20,7 +20,7 @@
   "author": "Chris Thielen",
   "license": "MIT",
   "peerDependencies": {
-    "typedoc": ">=0.7 <1.0"
+    "typedoc": ">=0.7.0 <0.15.0"
   },
   "devDependencies": {
     "@types/handlebars": "^4.0.37",
@@ -28,8 +28,7 @@
     "husky": "^2.2.0",
     "prettier": "^1.13.7",
     "pretty-quick": "^1.4.1",
-    "typedoc": "~0.11.1",
-    "typescript": "~2.7.2"
+    "typedoc": "~0.14.0"
   },
   "husky": {
     "hooks": {

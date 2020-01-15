@@ -2,7 +2,7 @@ import { Component, ConverterComponent } from 'typedoc/dist/lib/converter/compon
 import { Context } from 'typedoc/dist/lib/converter/context';
 import { Converter } from 'typedoc/dist/lib/converter/converter';
 import { CommentPlugin } from 'typedoc/dist/lib/converter/plugins/CommentPlugin';
-import { Comment } from 'typedoc/dist/lib/models';
+import { Comment, ProjectReflection } from 'typedoc/dist/lib/models';
 import { Reflection, ReflectionKind } from 'typedoc/dist/lib/models/reflections/abstract';
 import { ContainerReflection } from 'typedoc/dist/lib/models/reflections/container';
 import { DeclarationReflection } from 'typedoc/dist/lib/models/reflections/declaration';
@@ -75,6 +75,7 @@ export class ExternalModuleNamePlugin extends ConverterComponent {
         this.moduleRenames.push({
           renameTo: match[1],
           preferred: preferred != null,
+          symbolId: context.getSymbolID(node.symbol),
           reflection: <ContainerReflection>reflection,
         });
       }
@@ -134,9 +135,11 @@ export class ExternalModuleNamePlugin extends ConverterComponent {
         }
         item.reflection.parent = parent;
         parent.children.push(<DeclarationReflection>renaming);
+        updateSymbolMapping(context.project, item.symbolId, parent.id);
         return;
       }
 
+      updateSymbolMapping(context.project, item.symbolId, mergeTarget.id);
       if (!mergeTarget.children) {
         mergeTarget.children = [];
       }
@@ -168,6 +171,15 @@ export class ExternalModuleNamePlugin extends ConverterComponent {
   }
 }
 
+/**
+ * When we delete reflections, update the symbol mapping in order to fix:
+ * https://github.com/christopherthielen/typedoc-plugin-external-module-name/issues/313
+ * https://github.com/christopherthielen/typedoc-plugin-external-module-name/issues/193
+ */
+function updateSymbolMapping(project: ProjectReflection, symbolId: number, mappedReflectionId: number) {
+  project.symbolMapping[symbolId] = mappedReflectionId;
+}
+
 function isEmptyComment(comment: Comment) {
   return !comment || (!comment.text && !comment.shortText && (!comment.tags || comment.tags.length === 0));
 }
@@ -175,5 +187,6 @@ function isEmptyComment(comment: Comment) {
 interface ModuleRename {
   renameTo: string;
   preferred: boolean;
+  symbolId: number;
   reflection: ContainerReflection;
 }
