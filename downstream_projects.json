@@ -10,7 +10,8 @@
     "typedoc-0.12.0": "./test/typedoc-0.12.0",
     "typedoc-0.13.0": "./test/typedoc-0.13.0",
     "typedoc-0.14.2": "./test/typedoc-0.14.2",
-    "typedoc-0.15.8": "./test/typedoc-0.15.8"
+    "typedoc-0.15.8": "./test/typedoc-0.15.8",
+    "typedoc-0.16.5": "./test/typedoc-0.16.5"
   },
   "nohoist": ["**/typedoc-plugin-external-module-name"]
 }
