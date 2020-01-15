@@ -94,4 +94,11 @@ describe('docs', () => {
       .get('a')
       .contains('Nest2');
   });
+
+  it('renders link to dir1 re-exported symbol ', () => {
+    cy.get('a')
+      .contains('root')
+      .click();
+    cy.get('.tsd-member-group .tsd-signature a').contains('dir1');
+  });
 });

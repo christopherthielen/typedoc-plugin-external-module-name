@@ -4,6 +4,7 @@
   "description": "Test against typedoc latest",
   "main": "index.js",
   "scripts": {
+    "clean": "npx rimraf dist node_modules cypress/fixtures cypress/plugins cypress/screenshots cypress/support",
     "build": "typedoc --out dist src/index.ts",
     "test": "npm run build && npm run e2e",
     "e2e": "cypress-runner run --nospa --path dist"
@@ -14,5 +15,5 @@
     "@uirouter/cypress-runner": "latest",
     "typedoc": "latest",
     "typedoc-plugin-external-module-name": "latest"
-  }
+  }, "resolutions": { "handlebars": "4.5.0" }
 }
