@@ -20,6 +20,7 @@
   "author": "Chris Thielen",
   "license": "MIT",
   "dependencies": {
+    "lodash": "^4.1.2",
     "semver": "^7.1.1"
   },
   "peerDependencies": {
@@ -27,12 +28,17 @@
   },
   "devDependencies": {
     "@types/handlebars": "^4.0.37",
+    "@types/lodash": "^4.1.6",
+    "@types/node": "^13.1.6",
     "@types/semver": "^6.2.0",
     "@uirouter/publish-scripts": "^2.3.24",
     "husky": "^2.2.0",
     "prettier": "^1.13.7",
     "pretty-quick": "^1.4.1",
-    "typedoc": "~0.14.0"
+    "typedoc": "0.16.4"
+  },
+  "resolutions": {
+    "typedoc": "0.16.4"
   },
   "husky": {
     "hooks": {

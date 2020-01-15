@@ -6,6 +6,7 @@
 # Built using tsc
 plugin.js
 getRawComment.js
+typedocVersion.js
 
 # test cache
 .downstream_cache

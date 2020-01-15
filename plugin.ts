@@ -1,3 +1,4 @@
+import * as ts from 'typescript';
 import { Component, ConverterComponent } from 'typedoc/dist/lib/converter/components';
 import { Context } from 'typedoc/dist/lib/converter/context';
 import { Converter } from 'typedoc/dist/lib/converter/converter';
@@ -6,11 +7,8 @@ import { Comment, ProjectReflection } from 'typedoc/dist/lib/models';
 import { Reflection, ReflectionKind } from 'typedoc/dist/lib/models/reflections/abstract';
 import { ContainerReflection } from 'typedoc/dist/lib/models/reflections/container';
 import { DeclarationReflection } from 'typedoc/dist/lib/models/reflections/declaration';
+import { isTypedocVersion } from './typedocVersion';
 import { getRawComment } from './getRawComment';
-
-import { satisfies } from 'semver';
-const version = require('typedoc/package.json').version;
-const useOldDeclarationReflectionConstructor = satisfies(version, '< 0.14.0');
 
 /**
  * This plugin allows an ES6 module to specify its TypeDoc name.
@@ -79,7 +77,7 @@ export class ExternalModuleNamePlugin extends ConverterComponent {
         this.moduleRenames.push({
           renameTo: match[1],
           preferred: preferred != null,
-          symbolId: context.getSymbolID(node.symbol),
+          symbol: node.symbol,
           reflection: <ContainerReflection>reflection,
         });
       }
@@ -116,8 +114,7 @@ export class ExternalModuleNamePlugin extends ConverterComponent {
       for (let i = 0; i < nameParts.length - 1; ++i) {
         let child: DeclarationReflection = parent.children.filter(ref => ref.name === nameParts[i])[0];
         if (!child) {
-          if (useOldDeclarationReflectionConstructor) {
-            // for typedoc < 0.15.0
+          if (isTypedocVersion('< 0.14.0')) {
             child = new (DeclarationReflection as any)(parent, nameParts[i], ReflectionKind.ExternalModule);
           } else {
             child = new DeclarationReflection(nameParts[i], ReflectionKind.ExternalModule, parent);
@@ -147,11 +144,11 @@ export class ExternalModuleNamePlugin extends ConverterComponent {
         }
         item.reflection.parent = parent;
         parent.children.push(<DeclarationReflection>renaming);
-        updateSymbolMapping(context.project, item.symbolId, parent.id);
+        updateSymbolMapping(context, item.symbol, parent);
         return;
       }
 
-      updateSymbolMapping(context.project, item.symbolId, mergeTarget.id);
+      updateSymbolMapping(context, item.symbol, mergeTarget);
       if (!mergeTarget.children) {
         mergeTarget.children = [];
       }
@@ -171,7 +168,7 @@ export class ExternalModuleNamePlugin extends ConverterComponent {
       // Now that all the children have been relocated to the mergeTarget, delete the empty module
       // Make sure the module being renamed doesn't have children, or they will be deleted
       if (renaming.children) renaming.children.length = 0;
-      CommentPlugin.removeReflection(context.project, renaming);
+      removeReflection(context, renaming);
 
       // Remove @module and @preferred from the comment, if found.
       CommentPlugin.removeTags(mergeTarget.comment, 'module');
@@ -183,13 +180,25 @@ export class ExternalModuleNamePlugin extends ConverterComponent {
   }
 }
 
+function removeReflection(context: Context, reflection: Reflection) {
+  CommentPlugin.removeReflection(context.project, reflection);
+  if (isTypedocVersion('>=0.16.0 <0.17.0')) {
+    delete context.project.reflections[reflection.id];
+  }
+}
+
 /**
  * When we delete reflections, update the symbol mapping in order to fix:
  * https://github.com/christopherthielen/typedoc-plugin-external-module-name/issues/313
  * https://github.com/christopherthielen/typedoc-plugin-external-module-name/issues/193
  */
-function updateSymbolMapping(project: ProjectReflection, symbolId: number, mappedReflectionId: number) {
-  project.symbolMapping[symbolId] = mappedReflectionId;
+function updateSymbolMapping(context: Context, symbol: ts.Symbol, reflection: Reflection) {
+  if (isTypedocVersion('< 0.16.0')) {
+    // (context as any).registerReflection(reflection, null, symbol);
+    (context.project as any).symbolMapping[(symbol as any).id] = reflection.id;
+  } else {
+    context.registerReflection(reflection, symbol);
+  }
 }
 
 function isEmptyComment(comment: Comment) {
@@ -199,6 +208,6 @@ function isEmptyComment(comment: Comment) {
 interface ModuleRename {
   renameTo: string;
   preferred: boolean;
-  symbolId: number;
+  symbol: ts.Symbol;
   reflection: ContainerReflection;
 }

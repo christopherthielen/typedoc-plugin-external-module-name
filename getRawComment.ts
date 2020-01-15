@@ -9,9 +9,12 @@
 import * as ts from 'typescript';
 import * as _ts from 'typedoc/dist/lib/ts-internal';
 import { getRawComment as realGetRawComment } from 'typedoc/dist/lib/converter/factories/comment';
+import { isTypedocVersion } from './typedocVersion';
+
+const useMonkeyPatchedGetRawComment = isTypedocVersion('< 0.16.0');
 
 function monkeyPatch() {
-  const realGetJSDocCommentRanges = _ts.getJSDocCommentRanges;
+  const realGetJSDocCommentRanges = (_ts as any).getJSDocCommentRanges;
 
   function patchedGetJSDocCommentRanges() {
     const result = realGetJSDocCommentRanges.apply(this, arguments);
@@ -28,8 +31,9 @@ function monkeyPatch() {
     tsinternal.getJSDocCommentRanges = realGetJSDocCommentRanges;
   };
 }
+const getRawComment = useMonkeyPatchedGetRawComment ? monkeyPatchedGetRawComment : realGetRawComment;
 
-function getRawComment(node: ts.Node): string {
+function monkeyPatchedGetRawComment(node: ts.Node): string {
   let unpatch = monkeyPatch();
   try {
     return realGetRawComment(node);
