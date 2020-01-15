@@ -8,6 +8,10 @@ import { ContainerReflection } from 'typedoc/dist/lib/models/reflections/contain
 import { DeclarationReflection } from 'typedoc/dist/lib/models/reflections/declaration';
 import { getRawComment } from './getRawComment';
 
+import { satisfies } from 'semver';
+const version = require('typedoc/package.json').version;
+const useOldDeclarationReflectionConstructor = satisfies(version, '< 0.14.0');
+
 /**
  * This plugin allows an ES6 module to specify its TypeDoc name.
  * It also allows multiple ES6 modules to be merged together into a single TypeDoc module.
@@ -109,7 +113,12 @@ export class ExternalModuleNamePlugin extends ConverterComponent {
       for (let i = 0; i < nameParts.length - 1; ++i) {
         let child: DeclarationReflection = parent.children.filter(ref => ref.name === nameParts[i])[0];
         if (!child) {
-          child = new DeclarationReflection(parent, nameParts[i], ReflectionKind.ExternalModule);
+          if (useOldDeclarationReflectionConstructor) {
+            // for typedoc < 0.15.0
+            child = new (DeclarationReflection as any)(parent, nameParts[i], ReflectionKind.ExternalModule);
+          } else {
+            child = new DeclarationReflection(nameParts[i], ReflectionKind.ExternalModule, parent);
+          }
           child.parent = parent;
           child.children = [];
           context.project.reflections[child.id] = child;

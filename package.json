@@ -19,11 +19,15 @@
   },
   "author": "Chris Thielen",
   "license": "MIT",
+  "dependencies": {
+    "semver": "^7.1.1"
+  },
   "peerDependencies": {
     "typedoc": ">=0.7.0 <0.15.0"
   },
   "devDependencies": {
     "@types/handlebars": "^4.0.37",
+    "@types/semver": "^6.2.0",
     "@uirouter/publish-scripts": "^2.3.24",
     "husky": "^2.2.0",
     "prettier": "^1.13.7",
