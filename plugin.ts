@@ -88,6 +88,9 @@ export class ExternalModuleNamePlugin extends ConverterComponent {
     if (reflection.comment) {
       CommentPlugin.removeTags(reflection.comment, 'module');
       CommentPlugin.removeTags(reflection.comment, 'preferred');
+      if (isEmptyComment(reflection.comment)) {
+        delete reflection.comment;
+      }
     }
   }
 
