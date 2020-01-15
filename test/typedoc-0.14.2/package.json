@@ -1,7 +1,7 @@
 {
-  "name": "external-module-name-typedoc-0.14.0",
+  "name": "external-module-name-typedoc-0.14.2",
   "version": "1.0.0",
-  "description": "Test against typedoc 0.14.0",
+  "description": "Test against typedoc 0.14.2",
   "main": "index.js",
   "scripts": {
     "clean": "npx rimraf dist node_modules cypress/fixtures cypress/plugins cypress/screenshots cypress/support",
