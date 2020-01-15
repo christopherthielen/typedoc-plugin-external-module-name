@@ -95,10 +95,23 @@ describe('docs', () => {
       .contains('Nest2');
   });
 
-  it('renders link to dir1 re-exported symbol ', () => {
+  it('renders link to dir1 re-exported symbol', () => {
     cy.get('a')
       .contains('root')
       .click();
     cy.get('.tsd-member-group .tsd-signature a').contains('dir1');
+  });
+
+  it('renders modules renamed to parent.child', () => {
+    cy.get('a')
+      .contains('parent')
+      .click();
+    cy.get('a')
+      .contains('child')
+      .click();
+    cy.location().should(loc => {
+      expect(loc.pathname).to.contain('modules/parent.child');
+    });
+    cy.get('a').contains('ParentChild');
   });
 });
