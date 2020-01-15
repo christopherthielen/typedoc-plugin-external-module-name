@@ -182,7 +182,7 @@ export class ExternalModuleNamePlugin extends ConverterComponent {
 
 function removeReflection(context: Context, reflection: Reflection) {
   CommentPlugin.removeReflection(context.project, reflection);
-  if (isTypedocVersion('>=0.16.0 <0.17.0')) {
+  if (isTypedocVersion('>=0.16.0')) {
     delete context.project.reflections[reflection.id];
   }
 }
@@ -197,7 +197,9 @@ function updateSymbolMapping(context: Context, symbol: ts.Symbol, reflection: Re
     // (context as any).registerReflection(reflection, null, symbol);
     (context.project as any).symbolMapping[(symbol as any).id] = reflection.id;
   } else {
-    context.registerReflection(reflection, symbol);
+    // context.registerReflection(reflection, symbol);
+    const fqn = context.checker.getFullyQualifiedName(symbol);
+    (context.project as any).fqnToReflectionIdMap.set(fqn, reflection.id);
   }
 }
 
