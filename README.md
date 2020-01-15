@@ -1,7 +1,5 @@
 ## typedoc-plugin-external-module-name
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/christopherthielen/typedoc-plugin-external-module-name.svg)](https://greenkeeper.io/)
-
 <img src="https://api.travis-ci.org/christopherthielen/typedoc-plugin-external-module-name.svg?branch=master">
 
 ### What
