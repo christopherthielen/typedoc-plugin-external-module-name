@@ -7,6 +7,9 @@
 plugin.js
 getRawComment.js
 
+# test cache
+.downstream_cache
+
 # Logs
 logs
 *.log
