@@ -1,7 +1,6 @@
-/**
- * @module root
- */
-/** for typedoc */
+/** @packageDocumentation @module root */
 
-/** This is in the root module */
-export class File1 {}
+/** File1 class in the root module */
+export class File1 {
+  public one = 1;
+}

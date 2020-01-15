@@ -1,2 +1,2 @@
-/** @module dir2 */
+/** @packageDocumentation @module dir2 */
 export class Nest2 {}

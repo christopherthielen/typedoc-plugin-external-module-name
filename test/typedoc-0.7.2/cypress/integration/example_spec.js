@@ -21,6 +21,14 @@ describe('docs', () => {
     ul.get('li.tsd-kind-external-module.tsd-is-external.tsd-is-external').contains('root');
   });
 
+  it('renders @preferred root documentation comment', () => {
+    cy.visit('/');
+    cy.get('a')
+      .contains('root')
+      .click();
+    cy.contains('the preferred documentation for the root module');
+  });
+
   it('renders File1 and File2 in root', () => {
     cy.visit('/');
 
@@ -51,16 +59,35 @@ describe('docs', () => {
       .contains('File1')
       .click();
 
-    cy.contains('This is in the root module');
+    cy.contains('File1 class in the root module');
   });
 
   it('does not render empty comment blocks where @module used to be', () => {
     cy.visit('/');
 
     cy.get('a')
-      .contains('root')
+      .contains('dir1')
       .click();
     cy.get('section.tsd-comment').should('not.exist');
+  });
+
+  it('only renders the renamed modules, and none of the original names like "dir1/index"', () => {
+    cy.visit('/');
+    cy.get('.tsd-navigation')
+      .find('li.tsd-kind-external-module')
+      .should('have.length', 4);
+    cy.get('.tsd-navigation')
+      .find('li.tsd-kind-external-module')
+      .contains('parent');
+    cy.get('.tsd-navigation')
+      .find('li.tsd-kind-external-module')
+      .contains('dir1');
+    cy.get('.tsd-navigation')
+      .find('li.tsd-kind-external-module')
+      .contains('dir2');
+    cy.get('.tsd-navigation')
+      .find('li.tsd-kind-external-module')
+      .contains('root');
   });
 
   it('renders Nest1 in dir1', () => {

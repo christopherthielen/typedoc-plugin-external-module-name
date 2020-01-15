@@ -1,5 +1,7 @@
-/** @module root */
-
+/**
+ * the preferred documentation for the root module
+ * @preferred @module root
+ */ /** */
 import './file1';
 import './file2';
 import './dir1';
