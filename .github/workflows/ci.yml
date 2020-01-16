@@ -6,6 +6,9 @@ jobs:
   test:
     name: Integration Tests
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        typedoc_version: [0.5.10, 0.6.0, 0.7.2, 0.8.0, 0.9.0, 0.10.0, 0.11.1, 0.12.0, 0.13.0, 0.14.2, 0.15.8, 0.16.5]
     steps:
       - uses: actions/checkout@v2
       - name: Prepare to Test Downstream Projects
@@ -17,3 +20,5 @@ jobs:
         run: yarn install --pure-lockfile
       - name: Run Tests
         run: yarn test
+        env:
+          TYPEDOC_VERSION: ${{ matrix.typedoc_version }}
