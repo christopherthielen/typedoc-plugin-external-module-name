@@ -7,6 +7,6 @@
     "outDir": "./",
     "experimentalDecorators": true
   },
-  "files": ["plugin.ts", "getRawComment.ts"],
+  "files": ["typedoc-plugin-external-module-name.ts", "getRawComment.ts"],
   "exclude": ["node_modules"]
 }

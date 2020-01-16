@@ -4,7 +4,7 @@
 **/.*
 
 # Built using tsc
-plugin.js
+typedoc-plugin-external-module-name.js
 getRawComment.js
 typedocVersion.js
 
