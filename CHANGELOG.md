@@ -1,3 +1,19 @@
+# 3.0.0 (2020-01-16)
+[Compare `typedoc-plugin-external-module-name` versions 2.2.1 and 3.0.0](https://github.com/christopherthielen/typedoc-plugin-external-module-name/compare/2.2.1...3.0.0)
+
+### Bug Fixes
+
+* **emptycomment:** Remove empty comments on source reflections that are being merged, just in case.. not sure if this is even necessary! ([bd9b5cd](https://github.com/christopherthielen/typedoc-plugin-external-module-name/commit/bd9b5cd))
+* **typedoc0.16:** Some fixes for 0.16.x (WIP) ([0089d19](https://github.com/christopherthielen/typedoc-plugin-external-module-name/commit/0089d19))
+
+
+### Features
+
+* **typedoc0.16.4:** Support typedoc 0.16.4 ([02aa15a](https://github.com/christopherthielen/typedoc-plugin-external-module-name/commit/02aa15a))
+
+
+
+
 ## 2.2.1 (2020-01-15)
 [Compare `typedoc-plugin-external-module-name` versions 2.1.0 and 2.2.1](https://github.com/christopherthielen/typedoc-plugin-external-module-name/compare/2.1.0...2.2.1)
 
