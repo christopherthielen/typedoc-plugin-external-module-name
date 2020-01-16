@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "test": "test_downstream_projects",
+    "test": "./test/useTypedocVersion.js && ./test/banner.js && test_downstream_projects",
     "release": "release",
     "prepublishOnly": "npm run build"
   },
