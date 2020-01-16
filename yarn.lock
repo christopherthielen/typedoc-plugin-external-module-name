@@ -1066,15 +1066,10 @@ lodash.templatesettings@^4.0.0:
   dependencies:
     lodash._reinterpolate "^3.0.0"
 
-lodash@^4.1.2, lodash@^4.17.15:
+lodash@^4.1.2, lodash@^4.17.11, lodash@^4.17.15, lodash@^4.2.1:
   version "4.17.15"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
   integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
-
-lodash@^4.17.11, lodash@^4.2.1:
-  version "4.17.14"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.14.tgz#9ce487ae66c96254fe20b599f21b6816028078ba"
-  integrity sha512-mmKYbW3GLuJeX+iGP+Y7Gp1AiGHGbXHCOh/jZmrawMmsE7MS4znI3RL2FsjbqOyMayHInjOeykW7PEajUk1/xw==
 
 loud-rejection@^1.0.0:
   version "1.6.0"
@@ -1936,10 +1931,10 @@ typedoc-plugin-ui-router@2.0.0:
   resolved "https://registry.yarnpkg.com/typedoc-plugin-ui-router/-/typedoc-plugin-ui-router-2.0.0.tgz#e498885d9dfd48cd6d5b819ee35b183dabe16bbd"
   integrity sha512-okp4VXtjE99UszKVALhDeIjWBkMq8ZOuW1mbW51EqbOGi0gw4QBdXiAD6Bu7XT80j5yxy1gpf+2Syi+s3IoiKw==
 
-typedoc@0.14.2, typedoc@0.16.4:
-  version "0.16.4"
-  resolved "https://registry.yarnpkg.com/typedoc/-/typedoc-0.16.4.tgz#afbf97b421423ec85400886f626c94b18d514cf1"
-  integrity sha512-7pUHKipYmvmnKQtczPp1gFa/19z2lxkWzJVboMKeNRjz4cf82EfGdtcRD146KV0Nl4cAehhU28qcU+dcWn+e4g==
+typedoc@0.14.2, typedoc@0.16.6:
+  version "0.16.6"
+  resolved "https://registry.yarnpkg.com/typedoc/-/typedoc-0.16.6.tgz#e9157af4c34999fea10a1fa05cee7cb15c926166"
+  integrity sha512-1k4HXW5o6/rk5U3NEXEM+UVMPWaM0xW1/WJo1wlptb0gzsqtahymLDFSBX8Nqi7cToKOuiJPUr8j8UU368UNoA==
   dependencies:
     "@types/minimatch" "3.0.3"
     fs-extra "^8.1.0"
