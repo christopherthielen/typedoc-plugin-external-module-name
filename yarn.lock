@@ -1202,10 +1202,10 @@ npm-bundled@^1.0.1:
   resolved "https://registry.yarnpkg.com/npm-bundled/-/npm-bundled-1.0.5.tgz#3c1732b7ba936b3a10325aef616467c0ccbcc979"
   integrity sha512-m/e6jgWu8/v5niCUKQi9qQl8QdeEduFA96xHDDzFGqly0OOjI7c+60KM/2sppfnUU9JJagf+zs+yGhqSOFj71g==
 
-npm-packlist@^1.4.1:
-  version "1.4.7"
-  resolved "https://registry.yarnpkg.com/npm-packlist/-/npm-packlist-1.4.7.tgz#9e954365a06b80b18111ea900945af4f88ed4848"
-  integrity sha512-vAj7dIkp5NhieaGZxBJB8fF4R0078rqsmhJcAfXZ6O7JJhjhPK96n5Ry1oZcfLXgfun0GWTZPOxaEyqv8GBykQ==
+npm-packlist@1.4.6, npm-packlist@^1.4.1:
+  version "1.4.6"
+  resolved "https://registry.yarnpkg.com/npm-packlist/-/npm-packlist-1.4.6.tgz#53ba3ed11f8523079f1457376dd379ee4ea42ff4"
+  integrity sha512-u65uQdb+qwtGvEJh/DgQgW1Xg7sqeNbmxYyrvlNznaVTjV3E5P6F/EFjM+BVHXl7JJlsdG8A64M0XI8FI/IOlg==
   dependencies:
     ignore-walk "^3.0.1"
     npm-bundled "^1.0.1"
@@ -1886,16 +1886,6 @@ tweak-sourcemap-paths@0.0.4:
     glob "^7.1.6"
     yargs "^15.0.2"
 
-typedoc-default-themes@^0.7.1:
-  version "0.7.1"
-  resolved "https://registry.yarnpkg.com/typedoc-default-themes/-/typedoc-default-themes-0.7.1.tgz#1b92999162dc816b52b8094f503f254c87f07c28"
-  integrity sha512-s3jeUHc4EY8snIta6lNkUu9+36WMDUnkKm0UQ59w5iPo/4Y2d4+M9CDIKoenYKT5hkg/UnTc3oX48VZZytv8Xw==
-  dependencies:
-    backbone "^1.4.0"
-    jquery "^3.4.1"
-    lunr "^2.3.8"
-    underscore "^1.9.1"
-
 typedoc-default-themes@^0.7.2:
   version "0.7.2"
   resolved "https://registry.yarnpkg.com/typedoc-default-themes/-/typedoc-default-themes-0.7.2.tgz#1e9896f920b58e6da0bba9d7e643738d02405a5a"
@@ -1921,24 +1911,7 @@ typedoc-plugin-ui-router@2.0.0:
   resolved "https://registry.yarnpkg.com/typedoc-plugin-ui-router/-/typedoc-plugin-ui-router-2.0.0.tgz#e498885d9dfd48cd6d5b819ee35b183dabe16bbd"
   integrity sha512-okp4VXtjE99UszKVALhDeIjWBkMq8ZOuW1mbW51EqbOGi0gw4QBdXiAD6Bu7XT80j5yxy1gpf+2Syi+s3IoiKw==
 
-typedoc@0.15.6, typedoc@0.16.4:
-  version "0.16.4"
-  resolved "https://registry.yarnpkg.com/typedoc/-/typedoc-0.16.4.tgz#afbf97b421423ec85400886f626c94b18d514cf1"
-  integrity sha512-7pUHKipYmvmnKQtczPp1gFa/19z2lxkWzJVboMKeNRjz4cf82EfGdtcRD146KV0Nl4cAehhU28qcU+dcWn+e4g==
-  dependencies:
-    "@types/minimatch" "3.0.3"
-    fs-extra "^8.1.0"
-    handlebars "^4.7.2"
-    highlight.js "^9.17.1"
-    lodash "^4.17.15"
-    marked "^0.8.0"
-    minimatch "^3.0.0"
-    progress "^2.0.3"
-    shelljs "^0.8.3"
-    typedoc-default-themes "^0.7.1"
-    typescript "3.7.x"
-
-typedoc@0.16.7:
+typedoc@0.15.6, typedoc@0.16.7:
   version "0.16.7"
   resolved "https://registry.yarnpkg.com/typedoc/-/typedoc-0.16.7.tgz#00975cbe37fba3a69ec4b42827683303d9c89da9"
   integrity sha512-sNrLlaZ/aZHxA2rCURGf3g5YabGVwrujiwC6SCV/rgx3LFfZh+goUCatAAyTEDk7evuu6pJ0APGDSde1mSYegw==

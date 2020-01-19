@@ -38,7 +38,8 @@
     "typedoc": "0.16.7"
   },
   "resolutions": {
-    "typedoc": "0.16.4"
+    "npm-packlist": "1.4.6",
+    "typedoc": "0.16.7"
   },
   "husky": {
     "hooks": {
