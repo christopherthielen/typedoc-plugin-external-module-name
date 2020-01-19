@@ -1,6 +1,6 @@
 {
   "name": "typedoc-plugin-external-module-name",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Specify the Typedoc Module of a file using @module annotation",
   "main": "index.js",
   "scripts": {
@@ -29,13 +29,13 @@
   "devDependencies": {
     "@types/handlebars": "^4.0.37",
     "@types/lodash": "^4.1.6",
-    "@types/node": "^13.1.6",
+    "@types/node": "^13.1.8",
     "@types/semver": "^6.2.0",
-    "@uirouter/publish-scripts": "^2.3.24",
-    "husky": "^2.2.0",
+    "@uirouter/publish-scripts": "^2.3.44",
+    "husky": "^4.0.10",
     "prettier": "^1.13.7",
-    "pretty-quick": "^1.4.1",
-    "typedoc": "0.16.4"
+    "pretty-quick": "^2.0.1",
+    "typedoc": "0.16.7"
   },
   "resolutions": {
     "typedoc": "0.16.4"
