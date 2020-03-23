@@ -33,7 +33,7 @@
     "@types/semver": "^6.2.0",
     "@uirouter/publish-scripts": "^2.3.24",
     "husky": "^2.2.0",
-    "prettier": "^1.13.7",
+    "prettier": "^2.0.1",
     "pretty-quick": "^1.4.1",
     "typedoc": "0.16.4"
   },
