@@ -84,8 +84,8 @@ export class ExternalModuleNamePlugin extends ConverterComponent {
     }
 
     if (reflection.comment) {
-      CommentPlugin.removeTags(reflection.comment, 'module');
-      CommentPlugin.removeTags(reflection.comment, 'preferred');
+      reflection.comment.removeTags('module');
+      reflection.comment.removeTags('preferred');
       if (isEmptyComment(reflection.comment)) {
         delete reflection.comment;
       }
@@ -171,8 +171,10 @@ export class ExternalModuleNamePlugin extends ConverterComponent {
       removeReflection(context, renaming);
 
       // Remove @module and @preferred from the comment, if found.
-      CommentPlugin.removeTags(mergeTarget.comment, 'module');
-      CommentPlugin.removeTags(mergeTarget.comment, 'preferred');
+      if (mergeTarget.comment) {
+        mergeTarget.comment.removeTags('module');
+        mergeTarget.comment.removeTags('preferred');
+      }
       if (isEmptyComment(mergeTarget.comment)) {
         delete mergeTarget.comment;
       }
@@ -181,7 +183,7 @@ export class ExternalModuleNamePlugin extends ConverterComponent {
 }
 
 function removeReflection(context: Context, reflection: Reflection) {
-  CommentPlugin.removeReflection(context.project, reflection);
+  context.project.removeReflection(reflection, true);
   if (isTypedocVersion('>=0.16.0')) {
     delete context.project.reflections[reflection.id];
   }
