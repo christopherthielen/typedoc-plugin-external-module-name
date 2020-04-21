@@ -193,6 +193,10 @@ function removeReflection(context: Context, reflection: Reflection) {
  * https://github.com/christopherthielen/typedoc-plugin-external-module-name/issues/193
  */
 function updateSymbolMapping(context: Context, symbol: ts.Symbol, reflection: Reflection) {
+  if (!symbol) {
+    return;
+  }
+  
   if (isTypedocVersion('< 0.16.0')) {
     // (context as any).registerReflection(reflection, null, symbol);
     (context.project as any).symbolMapping[(symbol as any).id] = reflection.id;
