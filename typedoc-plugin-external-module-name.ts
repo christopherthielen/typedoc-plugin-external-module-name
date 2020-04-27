@@ -65,7 +65,7 @@ export class ExternalModuleNamePlugin extends ConverterComponent {
    * @param node  The node that is currently processed if available.
    */
   private onDeclaration(context: Context, reflection: Reflection, node?) {
-    if (reflection.kindOf(ReflectionKind.ExternalModule) || reflection.kindOf(ReflectionKind.Module)) {
+    if (reflection.kindOf(ReflectionKind.Module) || reflection.kindOf(ReflectionKind.Namespace)) {
       let comment = getRawComment(node);
       // Look for @module
       let match = /@module\s+([\w\u4e00-\u9fa5\.\-_/@"]+)/.exec(comment);
@@ -114,9 +114,9 @@ export class ExternalModuleNamePlugin extends ConverterComponent {
         let child: DeclarationReflection = parent.children.filter(ref => ref.name === nameParts[i])[0];
         if (!child) {
           if (isTypedocVersion('< 0.14.0')) {
-            child = new (DeclarationReflection as any)(parent, nameParts[i], ReflectionKind.ExternalModule);
+            child = new (DeclarationReflection as any)(parent, nameParts[i], ReflectionKind.Module);
           } else {
-            child = new DeclarationReflection(nameParts[i], ReflectionKind.ExternalModule, parent);
+            child = new DeclarationReflection(nameParts[i], ReflectionKind.Module, parent);
           }
           child.parent = parent;
           child.children = [];
@@ -197,7 +197,7 @@ function updateSymbolMapping(context: Context, symbol: ts.Symbol, reflection: Re
   if (!symbol) {
     return;
   }
-  
+
   if (isTypedocVersion('< 0.16.0')) {
     // (context as any).registerReflection(reflection, null, symbol);
     (context.project as any).symbolMapping[(symbol as any).id] = reflection.id;
