@@ -9,7 +9,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        typedoc_version: [0.5.10, 0.6.0, 0.7.2, 0.8.0, 0.9.0, 0.10.0, 0.11.1, 0.12.0, 0.13.0, 0.14.2, 0.15.8, 0.16.5]
+        typedoc_version: [0.7.2, 0.8.0, 0.9.0, 0.10.0, 0.11.1, 0.12.0, 0.13.0, 0.14.2, 0.15.8, 0.16.5, 0.17.6]
     steps:
       - uses: actions/checkout@v2
       - name: Prepare to Test Downstream Projects

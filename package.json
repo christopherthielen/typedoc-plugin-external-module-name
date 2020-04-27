@@ -37,9 +37,6 @@
     "pretty-quick": "^2.0.1",
     "typedoc": "0.17.6"
   },
-  "resolutions": {
-    "typedoc": "0.16.4"
-  },
   "husky": {
     "hooks": {
       "pre-commit": "pretty-quick --staged"
