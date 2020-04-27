@@ -6,7 +6,7 @@ import { Comment } from 'typedoc/dist/lib/models';
 import { Reflection, ReflectionKind } from 'typedoc/dist/lib/models/reflections/abstract';
 import { ContainerReflection } from 'typedoc/dist/lib/models/reflections/container';
 import { DeclarationReflection } from 'typedoc/dist/lib/models/reflections/declaration';
-import { isTypedocVersion } from './typedocVersion';
+import { createChildReflection, removeReflection, removeTags, updateSymbolMapping } from './typedocVersion';
 import { getRawComment } from './getRawComment';
 
 /**
@@ -83,8 +83,8 @@ export class ExternalModuleNamePlugin extends ConverterComponent {
     }
 
     if (reflection.comment) {
-      reflection.comment.removeTags('module');
-      reflection.comment.removeTags('preferred');
+      removeTags(reflection.comment, 'module');
+      removeTags(reflection.comment, 'preferred');
       if (isEmptyComment(reflection.comment)) {
         delete reflection.comment;
       }
@@ -104,20 +104,16 @@ export class ExternalModuleNamePlugin extends ConverterComponent {
     }, []);
 
     // Process each rename
-    this.moduleRenames.forEach(item => {
+    this.moduleRenames.forEach((item) => {
       let renaming = <ContainerReflection>item.reflection;
 
       // Find or create the module tree until the child's parent (each level is separated by .)
       let nameParts = item.renameTo.split('.');
       let parent: ContainerReflection = context.project;
       for (let i = 0; i < nameParts.length - 1; ++i) {
-        let child: DeclarationReflection = parent.children.filter(ref => ref.name === nameParts[i])[0];
+        let child: DeclarationReflection = parent.children.filter((ref) => ref.name === nameParts[i])[0];
         if (!child) {
-          if (isTypedocVersion('< 0.14.0')) {
-            child = new (DeclarationReflection as any)(parent, nameParts[i], ReflectionKind.Module);
-          } else {
-            child = new DeclarationReflection(nameParts[i], ReflectionKind.Module, parent);
-          }
+          child = createChildReflection(parent, nameParts[i]);
           child.parent = parent;
           child.children = [];
           context.project.reflections[child.id] = child;
@@ -128,7 +124,7 @@ export class ExternalModuleNamePlugin extends ConverterComponent {
 
       // Find an existing module with the child's name in the last parent. Use it as the merge target.
       let mergeTarget = <ContainerReflection>(
-        parent.children.filter(ref => ref.kind === renaming.kind && ref.name === nameParts[nameParts.length - 1])[0]
+        parent.children.filter((ref) => ref.kind === renaming.kind && ref.name === nameParts[nameParts.length - 1])[0]
       );
 
       // If there wasn't a merge target, change the name of the current module, connect it to the right parent and exit.
@@ -153,7 +149,7 @@ export class ExternalModuleNamePlugin extends ConverterComponent {
       }
 
       // Since there is a merge target, relocate all the renaming module's children to the mergeTarget.
-      let childrenOfRenamed = refsArray.filter(ref => ref.parent === renaming);
+      let childrenOfRenamed = refsArray.filter((ref) => ref.parent === renaming);
       childrenOfRenamed.forEach((ref: Reflection) => {
         // update links in both directions
         ref.parent = mergeTarget;
@@ -167,44 +163,17 @@ export class ExternalModuleNamePlugin extends ConverterComponent {
       // Now that all the children have been relocated to the mergeTarget, delete the empty module
       // Make sure the module being renamed doesn't have children, or they will be deleted
       if (renaming.children) renaming.children.length = 0;
-      removeReflection(context, renaming);
+      removeReflection(context.project, renaming);
 
       // Remove @module and @preferred from the comment, if found.
       if (mergeTarget.comment) {
-        mergeTarget.comment.removeTags('module');
-        mergeTarget.comment.removeTags('preferred');
+        removeTags(mergeTarget.comment, 'module');
+        removeTags(mergeTarget.comment, 'preferred');
       }
       if (isEmptyComment(mergeTarget.comment)) {
         delete mergeTarget.comment;
       }
     });
-  }
-}
-
-function removeReflection(context: Context, reflection: Reflection) {
-  context.project.removeReflection(reflection, true);
-  if (isTypedocVersion('>=0.16.0')) {
-    delete context.project.reflections[reflection.id];
-  }
-}
-
-/**
- * When we delete reflections, update the symbol mapping in order to fix:
- * https://github.com/christopherthielen/typedoc-plugin-external-module-name/issues/313
- * https://github.com/christopherthielen/typedoc-plugin-external-module-name/issues/193
- */
-function updateSymbolMapping(context: Context, symbol: ts.Symbol, reflection: Reflection) {
-  if (!symbol) {
-    return;
-  }
-
-  if (isTypedocVersion('< 0.16.0')) {
-    // (context as any).registerReflection(reflection, null, symbol);
-    (context.project as any).symbolMapping[(symbol as any).id] = reflection.id;
-  } else {
-    // context.registerReflection(reflection, symbol);
-    const fqn = context.checker.getFullyQualifiedName(symbol);
-    (context.project as any).fqnToReflectionIdMap.set(fqn, reflection.id);
   }
 }
 
