@@ -1,3 +1,19 @@
+# 3.1.0 (2020-04-27)
+[Compare `typedoc-plugin-external-module-name` versions 3.0.0 and 3.1.0](https://github.com/christopherthielen/typedoc-plugin-external-module-name/compare/3.0.0...3.1.0)
+
+### Bug Fixes
+
+* < 0.17.0 fix isModuleOrNamespace compat ([1ef1ad3](https://github.com/christopherthielen/typedoc-plugin-external-module-name/commit/1ef1ad3))
+* Re-add compatibility for typedoc < 0.17.0 ([c255f1e](https://github.com/christopherthielen/typedoc-plugin-external-module-name/commit/c255f1e))
+
+
+### Features
+
+* build with typedoc 0.17 and expand peerDependency semver range to include 0.17.x ([00f0f96](https://github.com/christopherthielen/typedoc-plugin-external-module-name/commit/00f0f96))
+
+
+
+
 # 3.0.0 (2020-01-16)
 [Compare `typedoc-plugin-external-module-name` versions 2.2.1 and 3.0.0](https://github.com/christopherthielen/typedoc-plugin-external-module-name/compare/2.2.1...3.0.0)
 
