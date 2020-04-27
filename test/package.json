@@ -17,6 +17,9 @@
     "typedoc": "latest",
     "typedoc-plugin-external-module-name": "latest"
   },
+  "devDependencies": {
+    "semver": "^7.3.2"
+  },
   "resolutions": {
     "handlebars": "4.5.0"
   }
