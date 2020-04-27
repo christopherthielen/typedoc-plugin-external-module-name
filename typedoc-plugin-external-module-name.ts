@@ -202,11 +202,9 @@ function updateSymbolMapping(context: Context, symbol: ts.Symbol, reflection: Re
     // (context as any).registerReflection(reflection, null, symbol);
     (context.project as any).symbolMapping[(symbol as any).id] = reflection.id;
   } else {
-    if (symbol) {
-      // context.registerReflection(reflection, symbol);
-      const fqn = context.checker.getFullyQualifiedName(symbol);
-      (context.project as any).fqnToReflectionIdMap.set(fqn, reflection.id);
-    }
+    // context.registerReflection(reflection, symbol);
+    const fqn = context.checker.getFullyQualifiedName(symbol);
+    (context.project as any).fqnToReflectionIdMap.set(fqn, reflection.id);
   }
 }
 
