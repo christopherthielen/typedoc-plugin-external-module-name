@@ -6,7 +6,13 @@ import { Comment } from 'typedoc/dist/lib/models';
 import { Reflection, ReflectionKind } from 'typedoc/dist/lib/models/reflections/abstract';
 import { ContainerReflection } from 'typedoc/dist/lib/models/reflections/container';
 import { DeclarationReflection } from 'typedoc/dist/lib/models/reflections/declaration';
-import { createChildReflection, removeReflection, removeTags, updateSymbolMapping } from './typedocVersion';
+import {
+  createChildReflection,
+  isModuleOrNamespace,
+  removeReflection,
+  removeTags,
+  updateSymbolMapping,
+} from './typedocVersionCompatibility';
 import { getRawComment } from './getRawComment';
 
 /**
@@ -65,7 +71,7 @@ export class ExternalModuleNamePlugin extends ConverterComponent {
    * @param node  The node that is currently processed if available.
    */
   private onDeclaration(context: Context, reflection: Reflection, node?) {
-    if (reflection.kindOf(ReflectionKind.Module) || reflection.kindOf(ReflectionKind.Namespace)) {
+    if (isModuleOrNamespace(reflection)) {
       let comment = getRawComment(node);
       // Look for @module
       let match = /@module\s+([\w\u4e00-\u9fa5\.\-_/@"]+)/.exec(comment);

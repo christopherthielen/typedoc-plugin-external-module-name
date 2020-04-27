@@ -9,7 +9,7 @@
 import * as ts from 'typescript';
 import * as _ts from 'typedoc/dist/lib/ts-internal';
 import { getRawComment as realGetRawComment } from 'typedoc/dist/lib/converter/factories/comment';
-import { isTypedocVersion } from './typedocVersion';
+import { isTypedocVersion } from './typedocVersionCompatibility';
 
 const useMonkeyPatchedGetRawComment = isTypedocVersion('< 0.16.0');
 
