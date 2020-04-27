@@ -63,3 +63,11 @@ export function updateSymbolMapping(context: Context, symbol: ts.Symbol, reflect
     (context.project as any).fqnToReflectionIdMap.set(fqn, reflection.id);
   }
 }
+
+export function isModuleOrNamespace(reflection: Reflection) {
+  if (isTypedocVersion('< 0.17.0')) {
+    return reflection.kindOf((ReflectionKind as any).ExternalModule) || reflection.kindOf(ReflectionKind.Module);
+  } else {
+    return reflection.kindOf(ReflectionKind.Module) || reflection.kindOf(ReflectionKind.Namespace);
+  }
+}

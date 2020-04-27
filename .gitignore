@@ -6,7 +6,7 @@
 # Built using tsc
 typedoc-plugin-external-module-name.js
 getRawComment.js
-typedocVersion.js
+typedocVersionCompatibility.js
 
 # test cache
 .downstream_cache
