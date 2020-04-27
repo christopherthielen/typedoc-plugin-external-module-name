@@ -7,7 +7,7 @@ const fs = require('fs');
 // check environment variable, script argument, or use latest
 process.chdir(__dirname);
 const package = JSON.parse(fs.readFileSync('./package.json').toString());
-const version = package.devDependencies.typedoc;
+const version = package.dependencies.typedoc;
 console.log('***************************************************************************************************');
 console.log('*                                                                                                 *');
 console.log(`*${versionMessage()}*`);

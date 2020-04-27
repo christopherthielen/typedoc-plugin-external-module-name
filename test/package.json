@@ -12,9 +12,9 @@
   },
   "author": "Chris Thielen",
   "license": "MIT",
-  "devDependencies": {
+  "dependencies": {
     "@uirouter/cypress-runner": "latest",
-    "typedoc": "0.14.2",
+    "typedoc": "latest",
     "typedoc-plugin-external-module-name": "latest"
   },
   "resolutions": {
