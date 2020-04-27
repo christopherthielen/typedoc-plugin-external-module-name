@@ -8,5 +8,5 @@ const fs = require('fs');
 process.chdir(__dirname);
 const version = process.env.TYPEDOC_VERSION || process.argv[2] || 'latest';
 const testPackageJson = JSON.parse(fs.readFileSync('./package.json').toString());
-testPackageJson.devDependencies.typedoc = version;
+testPackageJson.dependencies.typedoc = version;
 fs.writeFileSync('./package.json', JSON.stringify(testPackageJson, null, 2));
