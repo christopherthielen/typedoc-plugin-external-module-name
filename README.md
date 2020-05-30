@@ -4,9 +4,13 @@
 
 ## What
 
-A [Typedoc](http://typedoc.org) plugin which allows code doc to be organized into custom Modules.
+A [Typedoc](http://typedoc.org) plugin which allows code documentation to be organized into custom Modules.
 
-By default, Typedoc creates a "Module" for each ESM Module (each typescript file).
+_Note: In Typedoc 0.17.0 and above, Module refers to an ES6 Module._
+_In Typedoc 0.16.x and below, an ES6 Module was called an [External Module](https://github.com/TypeStrong/TypeDoc/issues/109)._
+_Although the plugin's name includes "External Module", it modifies Modules (ES6 Modules)_
+
+By default, Typedoc creates a Module for each ES6 Module (each file).
 
 This plugin allows documentation to be moved to arbitrary modules.
 It also supports merging multiple modules into a single module.
