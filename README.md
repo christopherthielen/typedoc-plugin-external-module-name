@@ -1,13 +1,16 @@
-## typedoc-plugin-external-module-name
+# typedoc-plugin-external-module-name
 
 <img src="https://api.travis-ci.org/christopherthielen/typedoc-plugin-external-module-name.svg?branch=master">
 
-### What
+## What
 
-A plugin for [Typedoc](http://typedoc.org)
+A [Typedoc](http://typedoc.org) plugin which allows code doc to be organized into custom Modules.
 
-When using ES6 modules in Typedoc, each file gets its own listing in "External Modules", i.e., "Globals".
-This can be annoying, for projects that utilize one file per class, for instance.
+By default, Typedoc creates a "Module" for each ESM Module (each typescript file).
+
+This plugin allows documentation to be moved to arbitrary modules.
+It also supports merging multiple modules into a single module.
+By default, all Modules in a given directory will be merged into a single module.
 
 Suppose your source files are organized like this:
 
@@ -18,85 +21,60 @@ thing2/baz.ts
 thing2/qux.ts
 ```
 
-Typedoc will create four "External Modules":
+By default, Typedoc would create four Modules:
 
-- `thing1/foo`
-- `thing1/bar`
-- `thing2/baz`
-- `thing2/qux`
+- `thing1/foo`: contains `foo` documentation
+- `thing1/bar`: contains `bar` documentation
+- `thing2/baz`: contains `baz` documentation
+- `thing2/qux`: contains `qux` documentation
 
-This plugin allows each file to specify the Typedoc External Module its code should belong to.
-If multiple files belong to the same module, they are merged.
+With this plugin, Typedoc creates two Modules:
 
-This allows more control over the modules that Typedoc generates.
-Instead of the four modules above, we could group them into two:
+- `thing1`: contains `foo` and `bar` documentation
+- `thing2`: contains `baz` and `qux` documentation
 
-- `thing1`
-- `thing2`
-
-### Installing
+## Installing
 
 Typedoc has the ability to discover and load typedoc plugins found in node_modules.
-Simply install the plugin and run typedoc.
+Simply install the package usng your package manager and run typedoc.
 
 ```
 npm install -D typedoc-plugin-external-module-name
 typedoc
 ```
 
-### Using
+## Using
 
-Add a comment block at the top of the file (ES6 module).
-Specify the Typedoc External Module using the `@module` annotation.
-Mark the comment block as `@packageDocumentation` to let typedoc know that this is documentation for the file itself
+### Directory Based
+
+This plugin will combine documentation from the files in each given directory into a new Module.
+The new module name is generated from the directory's location in the source tree.
+
+### Explicit via Annotation
+
+You can explicitly specify a Module name using the `@module` annotation.
+Add a comment block at the top of a Typescript file with `@module modulename`.
+Mark the comment block as `@packageDocumentation` to let typedoc know that this is documentation for the file (Module) itself
 (see: [Typedoc Docs](https://typedoc.org/guides/doccomments/#files)).
 
-#### thing1/foo.ts
-
 ```js
 /**
  * @packageDocumentation
- * @module thing1
+ * @module module1
  */
-
-// foo stuff
 ```
 
-#### thing1/bar.ts
+### Top level module comments
+
+When multiple modules are merged, the merged module summary is chosen arbitrarily from the first file processed.
+To use a specific file's comment block as the Module page summary, use `@preferred`.
 
 ```js
 /**
- * @packageDocumentation
- * @module thing1
- */
-
-// bar stuff
-```
-
-#### thing2/baz.ts
-
-```js
-/**
- * @packageDocumentation
- * @module thing2
- */
-
-// baz stuff
-```
-
-Multiple files may point to the same typedoc module.
-To specify the which file's comment block will be used to document the Typedoc Module page, use `@preferred`
-
-#### thing2/qux.ts
-
-```js
-/**
- * This comment will be used to document the "thing2" module.
+ * This comment will be used as the summary for the "thing2" module.
 
  * @packageDocumentation
  * @module thing2
  * @preferred
  */
-
-// qux stuff
 ```

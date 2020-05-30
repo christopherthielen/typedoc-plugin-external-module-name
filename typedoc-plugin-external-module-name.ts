@@ -1,4 +1,6 @@
 import * as ts from 'typescript';
+import * as path from 'path';
+
 import { Component, ConverterComponent } from 'typedoc/dist/lib/converter/components';
 import { Context } from 'typedoc/dist/lib/converter/context';
 import { Converter } from 'typedoc/dist/lib/converter/converter';
@@ -44,7 +46,8 @@ import { getRawComment } from './getRawComment';
 @Component({ name: 'external-module-name' })
 export class ExternalModuleNamePlugin extends ConverterComponent {
   /** List of module reflections which are models to rename */
-  private moduleRenames: ModuleRename[];
+  private moduleRenames: ModuleRename[] = [];
+  private entryPoints = [];
 
   initialize() {
     this.listenTo(this.owner, {
@@ -55,32 +58,50 @@ export class ExternalModuleNamePlugin extends ConverterComponent {
   }
 
   /**
-   * Triggered when the converter begins converting a project.
-   *
-   * @param context  The context object describing the current state the converter is in.
+   * Get the program entry points
    */
   private onBegin(context: Context) {
-    this.moduleRenames = [];
+    const dir = context.program.getCurrentDirectory();
+    this.entryPoints = context.program.getRootFileNames().map((entry) => path.dirname(path.resolve(dir, entry)));
   }
 
   /**
-   * Triggered when the converter has created a declaration reflection.
+   * Gets the module name for a reflection
    *
-   * @param context  The context object describing the current state the converter is in.
-   * @param reflection  The reflection that is currently processed.
-   * @param node  The node that is currently processed if available.
+   * Order of precedence:
+   * 1) custom function found in .typedoc-plugin-external-module-name.js
+   * 2) explicit @module tag
+   * 3) auto-create a module name based on the directory
+   */
+  private getModuleName(context: Context, reflection: Reflection, node): [string, boolean] {
+    let comment = getRawComment(node);
+    let preferred = /@preferred/.exec(comment) != null;
+    // Look for @module
+    let [, match] = /@module\s+([\w\u4e00-\u9fa5\.\-_/@"]+)/.exec(comment) || [];
+
+    // Make a guess based on enclosing directory structure
+    const filename = reflection.sources[0].file.fullFileName;
+    const pathsRelativeToEntrypoints = this.entryPoints
+      .map((entry) => path.dirname(path.relative(entry, filename)))
+      .filter((x) => !x.includes('../'))
+      .sort((a, b) => a.length - b.length);
+    // Find shortest path relative to the entry points
+    const guess = pathsRelativeToEntrypoints.pop();
+
+    return [match || guess, preferred];
+  }
+
+  /**
+   * Process a reflection.
+   * Determine the module name and add it to a list of renames
    */
   private onDeclaration(context: Context, reflection: Reflection, node?) {
     if (isModuleOrNamespace(reflection)) {
-      let comment = getRawComment(node);
-      // Look for @module
-      let match = /@module\s+([\w\u4e00-\u9fa5\.\-_/@"]+)/.exec(comment);
-      if (match) {
-        // Look for @preferred
-        let preferred = /@preferred/.exec(comment);
+      const [moduleName, preferred] = this.getModuleName(context, reflection, node);
+      if (moduleName) {
         // Set up a list of renames operations to perform when the resolve phase starts
         this.moduleRenames.push({
-          renameTo: match[1],
+          renameTo: moduleName,
           preferred: preferred != null,
           symbol: node.symbol,
           reflection: <ContainerReflection>reflection,
@@ -88,6 +109,7 @@ export class ExternalModuleNamePlugin extends ConverterComponent {
       }
     }
 
+    // Remove the tags
     if (reflection.comment) {
       removeTags(reflection.comment, 'module');
       removeTags(reflection.comment, 'preferred');
@@ -98,20 +120,16 @@ export class ExternalModuleNamePlugin extends ConverterComponent {
   }
 
   /**
-   * Triggered when the converter begins resolving a project.
-   *
-   * @param context  The context object describing the current state the converter is in.
+   * OK, we saw all the reflections.
+   * Now process the renames
    */
   private onBeginResolve(context: Context) {
     let projRefs = context.project.reflections;
-    let refsArray: Reflection[] = Object.keys(projRefs).reduce((m, k) => {
-      m.push(projRefs[k]);
-      return m;
-    }, []);
+    let refsArray: Reflection[] = Object.values(projRefs);
 
     // Process each rename
     this.moduleRenames.forEach((item) => {
-      let renaming = <ContainerReflection>item.reflection;
+      let renaming = item.reflection as ContainerReflection;
 
       // Find or create the module tree until the child's parent (each level is separated by .)
       let nameParts = item.renameTo.split('.');
@@ -129,9 +147,9 @@ export class ExternalModuleNamePlugin extends ConverterComponent {
       }
 
       // Find an existing module with the child's name in the last parent. Use it as the merge target.
-      let mergeTarget = <ContainerReflection>(
-        parent.children.filter((ref) => ref.kind === renaming.kind && ref.name === nameParts[nameParts.length - 1])[0]
-      );
+      let mergeTarget = parent.children.filter(
+        (ref) => ref.kind === renaming.kind && ref.name === nameParts[nameParts.length - 1],
+      )[0] as ContainerReflection;
 
       // If there wasn't a merge target, change the name of the current module, connect it to the right parent and exit.
       if (!mergeTarget) {
