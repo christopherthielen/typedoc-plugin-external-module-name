@@ -1,5 +1,6 @@
 import * as ts from 'typescript';
 import * as path from 'path';
+import * as fs from 'fs';
 
 import { Component, ConverterComponent } from 'typedoc/dist/lib/converter/components';
 import { Context } from 'typedoc/dist/lib/converter/context';
@@ -16,6 +17,17 @@ import {
   updateSymbolMapping,
 } from './typedocVersionCompatibility';
 import { getRawComment } from './getRawComment';
+
+const PLUGIN = 'typedoc-plugin-external-module-name';
+const CUSTOM_SCRIPT_FILENAME = `.${PLUGIN}.js`;
+
+type CustomModuleNameMappingFn = (
+  explicitModuleAnnotation: string,
+  implicitFromDirectory: string,
+  path: string,
+  reflection: Reflection,
+  context: Context,
+) => string;
 
 /**
  * This plugin allows an ES6 module to specify its TypeDoc name.
@@ -48,6 +60,8 @@ export class ExternalModuleNamePlugin extends ConverterComponent {
   /** List of module reflections which are models to rename */
   private moduleRenames: ModuleRename[] = [];
   private entryPoints = [];
+  private customGetModuleNameFn: CustomModuleNameMappingFn;
+  private defaultGetModuleNameFn: CustomModuleNameMappingFn = (match, guess) => match || guess;
 
   initialize() {
     this.listenTo(this.owner, {
@@ -55,6 +69,18 @@ export class ExternalModuleNamePlugin extends ConverterComponent {
       [Converter.EVENT_CREATE_DECLARATION]: this.onDeclaration,
       [Converter.EVENT_RESOLVE_BEGIN]: this.onBeginResolve,
     });
+
+    const pathToScript = path.join(process.cwd(), CUSTOM_SCRIPT_FILENAME);
+    try {
+      if (fs.existsSync(pathToScript)) {
+        const relativePath = path.relative(__dirname, pathToScript);
+        this.customGetModuleNameFn = require(relativePath);
+        console.log(`${PLUGIN}: Using custom module name mapping function from ${pathToScript}`);
+      }
+    } catch (error) {
+      console.error(`${PLUGIN}: Failed to load custom module name mapping function from ${pathToScript}`);
+      throw error;
+    }
   }
 
   /**
@@ -86,9 +112,12 @@ export class ExternalModuleNamePlugin extends ConverterComponent {
       .filter((x) => !x.includes('../'))
       .sort((a, b) => a.length - b.length);
     // Find shortest path relative to the entry points
-    const guess = pathsRelativeToEntrypoints.pop();
+    const guess = pathsRelativeToEntrypoints.pop(); //.replace(/[/\\]/g, '_');
 
-    return [match || guess, preferred];
+    // Try the custom function
+    const mapper: CustomModuleNameMappingFn = this.customGetModuleNameFn || this.defaultGetModuleNameFn;
+    const moduleName = mapper(match, guess, filename, reflection, context);
+    return [moduleName, preferred];
   }
 
   /**

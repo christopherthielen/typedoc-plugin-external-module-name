@@ -82,3 +82,48 @@ To use a specific file's comment block as the Module page summary, use `@preferr
  * @preferred
  */
 ```
+
+### Custom Module Name Generation
+
+Create a file named `.typedoc-plugin-external-module-name.js` in the folder you launch typedoc from.
+Create a custom mapping function in that file and export it using CommonJS.
+For each Module, the plugin will call your function and use the return value as the Module Name.
+
+```
+module.exports = function customMappingFunction() {
+  return "custom" // everything goes into "custom"
+}
+```
+
+The Function should have the following signature:
+
+```
+type CustomModuleNameMappingFn = (
+  explicitModuleAnnotation: string,
+  implicitFromDirectory: string,
+  path: string,
+  reflection: Reflection,
+  context: Context,
+) => string;
+
+```
+
+The arguments are:
+
+- `moduleAnnotation`: If the module has an explicit annotation, i.e., `@module explicit`
+- `implicitFromDirectory`: The plugin's default mapping
+- `path`: The path to the file
+- `reflection`: The Module [`ContainerReflection`](https://typedoc.org/api/classes/containerreflection.html)
+- `context`: The typedoc [`Context`](https://typedoc.org/api/classes/context.html)
+
+Example:
+
+```
+const subpackage = new RegExp("packages/([^/]+)/");
+module.exports = function customMappingFunction(explicit, implicit, path, reflection, context) {
+  // extract the monorepo package from the path
+  const package = subpackage.match(path)[1];
+  // build the module name
+  return `${package}/${implicit}`;
+}
+```
