@@ -16,6 +16,15 @@ function checkTypedocVersion(semverString: string) {
 
 export const isTypedocVersion = memoize(checkTypedocVersion);
 
+// before typedoc 0.17.0, ReflectionKind.Module was ReflectionKind.ExternalModule
+const ModuleKind = isTypedocVersion('< 0.17.0') ? (ReflectionKind as any).ExternalModule : ReflectionKind.Module;
+// before typedoc 0.17.0, ReflectionKind.Namespace was ReflectionKind.Module
+const NamespaceKind = isTypedocVersion('< 0.17.0') ? ReflectionKind.Module : (ReflectionKind as any).Namespace;
+
+export function isModuleOrNamespace(reflection: Reflection) {
+  return reflection.kindOf(ModuleKind) || reflection.kindOf(NamespaceKind);
+}
+
 export function removeTags(comment: Comment, tag: string) {
   if (isTypedocVersion('< 0.17.0')) {
     return CommentPlugin.removeTags(comment, tag);
@@ -38,9 +47,9 @@ export function removeReflection(project: ProjectReflection, reflection: Reflect
 
 export function createChildReflection(parent: Reflection, name: string) {
   if (isTypedocVersion('< 0.14.0')) {
-    return new (DeclarationReflection as any)(parent, name, ReflectionKind.Module);
+    return new (DeclarationReflection as any)(parent, name, ModuleKind);
   } else {
-    return new DeclarationReflection(name, ReflectionKind.Module, parent);
+    return new DeclarationReflection(name, ModuleKind, parent);
   }
 }
 
@@ -61,13 +70,5 @@ export function updateSymbolMapping(context: Context, symbol: ts.Symbol, reflect
     // context.registerReflection(reflection, symbol);
     const fqn = context.checker.getFullyQualifiedName(symbol);
     (context.project as any).fqnToReflectionIdMap.set(fqn, reflection.id);
-  }
-}
-
-export function isModuleOrNamespace(reflection: Reflection) {
-  if (isTypedocVersion('< 0.17.0')) {
-    return reflection.kindOf((ReflectionKind as any).ExternalModule) || reflection.kindOf(ReflectionKind.Module);
-  } else {
-    return reflection.kindOf(ReflectionKind.Module) || reflection.kindOf(ReflectionKind.Namespace);
   }
 }
