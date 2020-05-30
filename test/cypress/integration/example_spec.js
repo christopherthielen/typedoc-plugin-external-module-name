@@ -45,7 +45,6 @@ describe('docs', () => {
     }
 
     cy.get('ul.tsd-index-list').get('a').contains('File1');
-
     cy.get('ul.tsd-index-list').get('a').contains('File2');
   });
 
@@ -65,13 +64,22 @@ describe('docs', () => {
     cy.get('section.tsd-comment').should('not.exist');
   });
 
+  it('automatically creates a module name based on the enclosing directory', () => {
+    cy.visit('/');
+
+    cy.get('a').contains('guess').click();
+    cy.get('ul.tsd-index-list').get('a').contains('Thing1');
+    cy.get('ul.tsd-index-list').get('a').contains('Thing2');
+  });
+
   it('only renders the renamed modules, and none of the original names like "dir1/index"', () => {
     cy.visit('/');
-    cy.get('.tsd-navigation').find(tsdKindModuleSelector).should('have.length', 4);
+    cy.get('.tsd-navigation').find(tsdKindModuleSelector).should('have.length', 5);
     cy.get('.tsd-navigation').find(tsdKindModuleSelector).contains('parent');
     cy.get('.tsd-navigation').find(tsdKindModuleSelector).contains('dir1');
     cy.get('.tsd-navigation').find(tsdKindModuleSelector).contains('dir2');
     cy.get('.tsd-navigation').find(tsdKindModuleSelector).contains('root');
+    cy.get('.tsd-navigation').find(tsdKindModuleSelector).contains('guess/nest');
   });
 
   it('renders Nest1 in dir1', () => {
