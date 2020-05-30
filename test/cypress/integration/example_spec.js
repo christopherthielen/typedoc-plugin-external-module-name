@@ -72,14 +72,20 @@ describe('docs', () => {
     cy.get('ul.tsd-index-list').get('a').contains('Thing2');
   });
 
+  it('uses the module name returned from .typedoc-plugin-external-module-name.js', () => {
+    cy.visit('/');
+
+    cy.get('a').contains('custom_module').click();
+    cy.get('ul.tsd-index-list').get('a').contains('CustomThing');
+  });
+
   it('only renders the renamed modules, and none of the original names like "dir1/index"', () => {
     cy.visit('/');
-    cy.get('.tsd-navigation').find(tsdKindModuleSelector).should('have.length', 5);
-    cy.get('.tsd-navigation').find(tsdKindModuleSelector).contains('parent');
-    cy.get('.tsd-navigation').find(tsdKindModuleSelector).contains('dir1');
-    cy.get('.tsd-navigation').find(tsdKindModuleSelector).contains('dir2');
-    cy.get('.tsd-navigation').find(tsdKindModuleSelector).contains('root');
-    cy.get('.tsd-navigation').find(tsdKindModuleSelector).contains('guess/nest');
+    const expectedModules = ['parent', 'dir1', 'dir2', 'root', 'guess/nest', 'custom_module'];
+    cy.get('.tsd-navigation').find(tsdKindModuleSelector).should('have.length', expectedModules.length);
+    expectedModules.forEach((expectedModule) => {
+      cy.get('.tsd-navigation').find(tsdKindModuleSelector).contains(expectedModule);
+    });
   });
 
   it('renders Nest1 in dir1', () => {
