@@ -1,3 +1,25 @@
+# 4.0.0 (2020-05-31)
+[Compare `typedoc-plugin-external-module-name` versions 3.1.0 and 4.0.0](https://github.com/christopherthielen/typedoc-plugin-external-module-name/compare/3.1.0...4.0.0)
+
+### Bug Fixes
+
+* fix createChildReflection ReflectionKind for typedoc < 0.17 (now creates a 0.17 Module, not a Namespace) ([fc6b2b4](https://github.com/christopherthielen/typedoc-plugin-external-module-name/commit/fc6b2b4))
+
+
+### Features
+
+* Bump package to 4.0.0 ([aec9638](https://github.com/christopherthielen/typedoc-plugin-external-module-name/commit/aec9638))
+* merge modules from the same directory into a single module by default ([fd03f0b](https://github.com/christopherthielen/typedoc-plugin-external-module-name/commit/fd03f0b))
+* Support a .typedoc-plugin-external-module-name.js file for custom generation of module names based on the reflection itself ([ca0a9c7](https://github.com/christopherthielen/typedoc-plugin-external-module-name/commit/ca0a9c7)), closes [#423](https://github.com/christopherthielen/typedoc-plugin-external-module-name/issues/423)
+
+
+### BREAKING CHANGES
+
+*     This plugin now automatically applies a Module Name based on the file path.
+
+
+
+
 # 3.1.0 (2020-04-27)
 [Compare `typedoc-plugin-external-module-name` versions 3.0.0 and 3.1.0](https://github.com/christopherthielen/typedoc-plugin-external-module-name/compare/3.0.0...3.1.0)
 
