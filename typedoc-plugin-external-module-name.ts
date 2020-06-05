@@ -62,6 +62,7 @@ export class ExternalModuleNamePlugin extends ConverterComponent {
   private entryPoints = [];
   private customGetModuleNameFn: CustomModuleNameMappingFn;
   private defaultGetModuleNameFn: CustomModuleNameMappingFn = (match, guess) => match || guess;
+  private disableAutoModuleName = false;
 
   initialize() {
     this.listenTo(this.owner, {
@@ -83,12 +84,14 @@ export class ExternalModuleNamePlugin extends ConverterComponent {
     }
   }
 
-  /**
-   * Get the program entry points
-   */
   private onBegin(context: Context) {
+    /** Get the program entry points */
     const dir = context.program.getCurrentDirectory();
     this.entryPoints = context.program.getRootFileNames().map((entry) => path.dirname(path.resolve(dir, entry)));
+
+    /** Process options */
+    const option = this.application.options.getValue('disableAutoModuleName');
+    this.disableAutoModuleName = option === 'true' || option === true;
   }
 
   /**
@@ -104,15 +107,20 @@ export class ExternalModuleNamePlugin extends ConverterComponent {
     let preferred = /@preferred/.exec(comment) != null;
     // Look for @module
     let [, match] = /@module\s+([\w\u4e00-\u9fa5\.\-_/@"]+)/.exec(comment) || [];
-
     // Make a guess based on enclosing directory structure
     const filename = reflection.sources[0].file.fullFileName;
-    const pathsRelativeToEntrypoints = this.entryPoints
-      .map((entry) => path.dirname(path.relative(entry, filename)))
-      .filter((x) => !x.includes('../'))
-      .sort((a, b) => a.length - b.length);
-    // Find shortest path relative to the entry points
-    const guess = pathsRelativeToEntrypoints.pop(); //.replace(/[/\\]/g, '_');
+    const entryPoints = this.entryPoints;
+
+    function getAutoModuleName() {
+      const pathsRelativeToEntrypoints = entryPoints
+        .map((entry) => path.dirname(path.relative(entry, filename)))
+        .filter((x) => !x.includes('../'))
+        .sort((a, b) => a.length - b.length);
+      // Find shortest path relative to the entry points
+      return pathsRelativeToEntrypoints.pop(); //.replace(/[/\\]/g, '_');
+    }
+
+    const guess = this.disableAutoModuleName ? undefined : getAutoModuleName();
 
     // Try the custom function
     const mapper: CustomModuleNameMappingFn = this.customGetModuleNameFn || this.defaultGetModuleNameFn;
