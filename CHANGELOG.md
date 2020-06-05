@@ -1,3 +1,13 @@
+## 4.0.1 (2020-06-05)
+[Compare `typedoc-plugin-external-module-name` versions 4.0.0 and 4.0.1](https://github.com/christopherthielen/typedoc-plugin-external-module-name/compare/4.0.0...4.0.1)
+
+### Features
+
+* Add a --disableAutoModuleName flag ([a8561e0](https://github.com/christopherthielen/typedoc-plugin-external-module-name/commit/a8561e0))
+
+
+
+
 # 4.0.0 (2020-05-31)
 [Compare `typedoc-plugin-external-module-name` versions 3.1.0 and 4.0.0](https://github.com/christopherthielen/typedoc-plugin-external-module-name/compare/3.1.0...4.0.0)
 
