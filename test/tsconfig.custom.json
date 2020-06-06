@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "skipLibCheck": true,
+    "typeRoots": ["typings"]
+  },
+  "files": ["src/custom/index.ts"]
+}
