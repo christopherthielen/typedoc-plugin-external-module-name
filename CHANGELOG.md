@@ -1,3 +1,13 @@
+## 4.0.3 (2020-06-06)
+[Compare `typedoc-plugin-external-module-name` versions 4.0.2 and 4.0.3](https://github.com/christopherthielen/typedoc-plugin-external-module-name/compare/4.0.2...4.0.3)
+
+### Bug Fixes
+
+* **windows:** when calculating the common prefix, always use path.resolve() to map to native path separator, i.e. "\" ([09b2090](https://github.com/christopherthielen/typedoc-plugin-external-module-name/commit/09b2090))
+
+
+
+
 ## 4.0.2 (2020-06-06)
 [Compare `typedoc-plugin-external-module-name` versions 4.0.1 and 4.0.2](https://github.com/christopherthielen/typedoc-plugin-external-module-name/compare/4.0.1...4.0.2)
 
