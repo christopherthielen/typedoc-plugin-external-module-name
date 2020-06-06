@@ -119,13 +119,17 @@ export class ExternalModuleNamePlugin extends ConverterComponent {
    * 3) auto-create a module name based on the directory
    */
   private getModuleName(context: Context, reflection: Reflection, node): [string, boolean] {
-    let comment = getRawComment(node);
-    let preferred = /@preferred/.exec(comment) != null;
+    const comment = getRawComment(node);
+    const preferred = /@preferred/.exec(comment) != null;
     // Look for @module
-    let [, match] = /@module\s+([\w\u4e00-\u9fa5\.\-_/@"]+)/.exec(comment) || [];
+    const [, match] = /@module\s+([\w\u4e00-\u9fa5\.\-_/@"]+)/.exec(comment) || [];
     // Make a guess based on enclosing directory structure
     const filename = reflection.sources[0].file.fullFileName;
-    const guess = this.disableAutoModuleName ? undefined : path.dirname(path.relative(this.baseDir, filename));
+
+    let guess = this.disableAutoModuleName ? undefined : path.dirname(path.relative(this.baseDir, filename));
+    if (guess === '.') {
+      guess = 'root';
+    }
 
     // Try the custom function
     const mapper: CustomModuleNameMappingFn = this.customGetModuleNameFn || this.defaultGetModuleNameFn;
