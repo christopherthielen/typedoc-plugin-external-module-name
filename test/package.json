@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "clean": "npx rimraf dist node_modules cypress/fixtures cypress/plugins cypress/screenshots cypress/support .DS_Store yarn.lock",
-    "build": "typedoc --out dist src/index.ts",
+    "build": "npm run build:annotations && npm run build:automatic && npm run build:custom",
+    "build:annotations": "typedoc --out dist/annotations src/annotations/index.ts",
+    "build:automatic": "typedoc --out dist/automatic src/automatic/index.ts",
+    "build:custom": "typedoc --out dist/custom src/custom/index.ts",
     "test": " npm run build && npm run e2e",
     "e2e": "cypress-runner run --nospa --path dist",
     "open": "cypress-runner open --nospa --path dist"
