@@ -1,3 +1,13 @@
+## 4.0.2 (2020-06-06)
+[Compare `typedoc-plugin-external-module-name` versions 4.0.1 and 4.0.2](https://github.com/christopherthielen/typedoc-plugin-external-module-name/compare/4.0.1...4.0.2)
+
+### Bug Fixes
+
+* Use the common parent directory of all entrypoints as the relative path to guess module names ([f790eee](https://github.com/christopherthielen/typedoc-plugin-external-module-name/commit/f790eee))
+
+
+
+
 ## 4.0.1 (2020-06-05)
 [Compare `typedoc-plugin-external-module-name` versions 4.0.0 and 4.0.1](https://github.com/christopherthielen/typedoc-plugin-external-module-name/compare/4.0.0...4.0.1)
 
