@@ -1,6 +1,6 @@
 name: 'CI: typedoc-plugin-external-module-name'
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
   test:
