@@ -79,11 +79,11 @@
     "@types/node" "*"
 
 "@uirouter/publish-scripts@^2.3.24":
-  version "2.3.49"
-  resolved "https://registry.yarnpkg.com/@uirouter/publish-scripts/-/publish-scripts-2.3.49.tgz#95a88482bd7460ee28d0fc1ebedda761ae721454"
-  integrity sha512-hf7HwH0kgFMR1EYmGob1AIl3f7uYQgum4JYpuK8H7nszrHYN04a+jIRgJoxVLBIy0HyQmMWaW7YKLCVtIkixOw==
+  version "2.5.2"
+  resolved "https://registry.yarnpkg.com/@uirouter/publish-scripts/-/publish-scripts-2.5.2.tgz#d17c228851a18df56b0df2b1533c7d5cb177c078"
+  integrity sha512-LV3K5Dh5kJtySF55rRgvJmtvcJRkNnYHmpRoGkXdrPFzRC+eog+C7qGvIRW8aVz/ZF2Kls9Yq6bk7lMBIR5Snw==
   dependencies:
-    check-peer-dependencies "2.0.2"
+    check-peer-dependencies "^2.0.2"
     conventional-changelog "^3.1.21"
     conventional-changelog-ui-router-core "^1.4.2"
     find-parent-dir "^0.3.0"
@@ -97,11 +97,6 @@
     shx "^0.3.1"
     tmp "^0.2.1"
     tweak-sourcemap-paths "0.0.4"
-    typedoc "^0.17.7"
-    typedoc-plugin-external-module-name "3.1.0"
-    typedoc-plugin-internal-external "2.1.1"
-    typedoc-plugin-ui-router "2.0.2"
-    ui-router-typedoc-themes "1.0.2"
     yalc "^1.0.0-pre.35"
     yargs "^15.3.1"
 
@@ -267,7 +262,7 @@ chalk@^4.0.0:
     ansi-styles "^4.1.0"
     supports-color "^7.1.0"
 
-check-peer-dependencies@2.0.2:
+check-peer-dependencies@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/check-peer-dependencies/-/check-peer-dependencies-2.0.2.tgz#f41ee03da90e9caa42b0d35b95d29ba5ec0d8f50"
   integrity sha512-2ONozVlLrkoTtlHBNFBNDQn4pjzecvwD8NlkpiPxVcvio9YulTdORzEr4kzrm1k2M3oZ2B7uNCzoe8w/FM/6Cg==
@@ -2078,44 +2073,10 @@ typedoc-default-themes@^0.10.1:
   dependencies:
     lunr "^2.3.8"
 
-typedoc-plugin-external-module-name@3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/typedoc-plugin-external-module-name/-/typedoc-plugin-external-module-name-3.1.0.tgz#3c2dc72ee6fa511efdee21f9f470140a5c69042b"
-  integrity sha512-7Jym2cOkSbMtXRb2C9RytIihryB/a7UZZbCWeIZ+PoSxglOwiHqTAPWWVN2AbVKh3iKy8PpGRCYggfDnpb177g==
-  dependencies:
-    lodash "^4.1.2"
-    semver "^7.1.1"
-
-typedoc-plugin-internal-external@2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/typedoc-plugin-internal-external/-/typedoc-plugin-internal-external-2.1.1.tgz#fb3842bc2fe04dd7b3e77832a1da8251ba30f97d"
-  integrity sha512-T7f/zb4HDReKo8yhSyNUf6flhaWkIJx9/Od9BkNzXOBBaKs+TgWH5sLxQ5aeGa5IDDWohrtrFvHWm3D/RQq2Nw==
-
-typedoc-plugin-ui-router@2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/typedoc-plugin-ui-router/-/typedoc-plugin-ui-router-2.0.2.tgz#db8526df73967e89ea12b4d84dd33bb317816286"
-  integrity sha512-HyD8JH5wF0L7qkmsmm2PKCFU2EsXKAwluULBu4AEaEKt7wpFvrV9UgNIOujFQeok9KiSTmc51tcbJw1FGjETPA==
-
 typedoc@0.17.6:
   version "0.17.6"
   resolved "https://registry.yarnpkg.com/typedoc/-/typedoc-0.17.6.tgz#cab87a72c10e05429016d659a4c3071a5a3ffb61"
   integrity sha512-pQiYnhG3yJk7939cv2n8uFoTsSgy5Hfiw0dgOQYa9nT9Ya1013dMctQdAXMj8JbNu7KhcauQyq9Zql9D/TziLw==
-  dependencies:
-    fs-extra "^8.1.0"
-    handlebars "^4.7.6"
-    highlight.js "^10.0.0"
-    lodash "^4.17.15"
-    lunr "^2.3.8"
-    marked "1.0.0"
-    minimatch "^3.0.0"
-    progress "^2.0.3"
-    shelljs "^0.8.4"
-    typedoc-default-themes "^0.10.1"
-
-typedoc@^0.17.7:
-  version "0.17.7"
-  resolved "https://registry.yarnpkg.com/typedoc/-/typedoc-0.17.7.tgz#70797401140403a5f91589ed3f4f24c03841bf7a"
-  integrity sha512-PEnzjwQAGjb0O8a6VDE0lxyLAadqNujN5LltsTUhZETolRMiIJv6Ox+Toa8h0XhKHqAOh8MOmB0eBVcWz6nuAw==
   dependencies:
     fs-extra "^8.1.0"
     handlebars "^4.7.6"
@@ -2140,10 +2101,6 @@ uglify-js@^3.1.4:
   dependencies:
     commander "~2.20.3"
     source-map "~0.6.1"
-
-ui-router-typedoc-themes@1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/ui-router-typedoc-themes/-/ui-router-typedoc-themes-1.0.2.tgz#3274960b8ee61e026b405ce3afcd9a2925992861"
 
 universalify@^0.1.0:
   version "0.1.1"
