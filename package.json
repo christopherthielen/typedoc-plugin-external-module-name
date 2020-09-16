@@ -34,7 +34,7 @@
     "@uirouter/publish-scripts": "^2.3.24",
     "husky": "^4.2.5",
     "prettier": "^2.0.5",
-    "pretty-quick": "^2.0.1",
+    "pretty-quick": "^3.0.2",
     "typedoc": "0.17.6",
     "typescript": ">=3.8.3"
   },
