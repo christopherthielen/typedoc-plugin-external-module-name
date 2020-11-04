@@ -148,7 +148,7 @@ export class ExternalModuleNamePlugin extends ConverterComponent {
         // Set up a list of renames operations to perform when the resolve phase starts
         this.moduleRenames.push({
           renameTo: moduleName,
-          preferred: preferred != null,
+          preferred: !!preferred,
           symbol: node.symbol,
           reflection: <ContainerReflection>reflection,
         });
