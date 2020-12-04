@@ -19,7 +19,7 @@ import {
 import { getRawComment } from './getRawComment';
 
 const PLUGIN = 'typedoc-plugin-external-module-name';
-const CUSTOM_SCRIPT_FILENAME = `.${PLUGIN}.js`;
+const CUSTOM_SCRIPT_FILENAMES = [`.${PLUGIN}.js`, `.${PLUGIN}.cjs`, `.${PLUGIN}.mjs`];
 
 type CustomModuleNameMappingFn = (
   explicitModuleAnnotation: string,
@@ -71,16 +71,19 @@ export class ExternalModuleNamePlugin extends ConverterComponent {
       [Converter.EVENT_RESOLVE_BEGIN]: this.onBeginResolve,
     });
 
-    const pathToScript = path.join(process.cwd(), CUSTOM_SCRIPT_FILENAME);
-    try {
-      if (fs.existsSync(pathToScript)) {
-        const relativePath = path.relative(__dirname, pathToScript);
-        this.customGetModuleNameFn = require(relativePath);
-        console.log(`${PLUGIN}: Using custom module name mapping function from ${pathToScript}`);
+    for (const filename of CUSTOM_SCRIPT_FILENAMES) {
+      const pathToScript = path.join(process.cwd(), filename);
+      try {
+        if (fs.existsSync(pathToScript)) {
+          const relativePath = path.relative(__dirname, pathToScript);
+          this.customGetModuleNameFn = require(relativePath);
+          console.log(`${PLUGIN}: Using custom module name mapping function from ${pathToScript}`);
+          return;
+        }
+      } catch (error) {
+        console.error(`${PLUGIN}: Failed to load custom module name mapping function from ${pathToScript}`);
+        throw error;
       }
-    } catch (error) {
-      console.error(`${PLUGIN}: Failed to load custom module name mapping function from ${pathToScript}`);
-      throw error;
     }
   }
 
