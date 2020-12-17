@@ -90,7 +90,7 @@ export class ExternalModuleNamePlugin extends ConverterComponent {
   private onBegin(context: Context) {
     /** Get the program entry points */
     const dir = context.program.getCurrentDirectory();
-    const rootFileNames = context.program.getRootFileNames();
+    const rootFileNames = context.program.getRootFileNames() ?? [];
     const options = context.getCompilerOptions();
 
     function commonPrefix(string1: string, string2: string) {
@@ -103,7 +103,7 @@ export class ExternalModuleNamePlugin extends ConverterComponent {
 
     const commonParent = rootFileNames.reduce(
       (acc, entry) => commonPrefix(acc, path.dirname(path.resolve(dir, entry))),
-      path.resolve(rootFileNames[0]),
+      path.resolve(rootFileNames[0] ?? dir),
     );
 
     this.baseDir = options.rootDir || options.baseUrl || commonParent;
