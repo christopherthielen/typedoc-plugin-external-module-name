@@ -1,3 +1,20 @@
+## 4.0.4 (2020-12-17)
+[Compare `typedoc-plugin-external-module-name` versions 4.0.3 and 4.0.4](https://github.com/christopherthielen/typedoc-plugin-external-module-name/compare/4.0.3...4.0.4)
+
+### Bug Fixes
+
+* If automatic name guesses '.', rename to 'root' instead. ([52bb52c](https://github.com/christopherthielen/typedoc-plugin-external-module-name/commit/52bb52c))
+* rootFileNames can be an empty array.  Use current dir as the base path instead of blowing up. ([f3c75dd](https://github.com/christopherthielen/typedoc-plugin-external-module-name/commit/f3c75dd)), closes [#548](https://github.com/christopherthielen/typedoc-plugin-external-module-name/issues/548)
+
+
+### Features
+
+* allow .cjs and .mjs extensions for custom mapping function file to accomodate "type": "module" in package.json ([f47f8ec](https://github.com/christopherthielen/typedoc-plugin-external-module-name/commit/f47f8ec))
+* support typedoc 0.19 ([f787640](https://github.com/christopherthielen/typedoc-plugin-external-module-name/commit/f787640))
+
+
+
+
 ## 4.0.3 (2020-06-06)
 [Compare `typedoc-plugin-external-module-name` versions 4.0.2 and 4.0.3](https://github.com/christopherthielen/typedoc-plugin-external-module-name/compare/4.0.2...4.0.3)
 
