@@ -3,7 +3,7 @@ name: 'CI: typedoc-plugin-external-module-name'
 on: [push, pull_request]
 
 jobs:
-  test:
+  ci:
     name: Integration Tests
     runs-on: ubuntu-latest
     strategy:
