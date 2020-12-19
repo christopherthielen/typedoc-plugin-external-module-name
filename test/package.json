@@ -5,14 +5,7 @@
   "main": "index.js",
   "scripts": {
     "clean": "npx rimraf dist node_modules cypress/fixtures cypress/plugins cypress/screenshots cypress/support .DS_Store yarn.lock",
-    "build": "npm run build:annotations && npm run build:automatic && npm run build:custom && npm run build:nofiles",
-    "prebuild:type": "shx cp tsconfig.${TYPE}.json tsconfig.json",
-    "build:type": "typedoc --out dist/${TYPE}",
-    "postbuild:type": "shx rm tsconfig.json",
-    "build:annotations": "TYPE=annotations npm run build:type",
-    "build:automatic": "TYPE=automatic npm run build:type",
-    "build:custom": "TYPE=custom npm run build:type",
-    "build:nofiles": "TYPE=automatic-nofiles npm run build:type",
+    "build": "./generate-docs.sh",
     "test": " npm run build && npm run e2e",
     "e2e": "cypress-runner run --nospa --path dist",
     "open": "cypress-runner open --nospa --path dist"
