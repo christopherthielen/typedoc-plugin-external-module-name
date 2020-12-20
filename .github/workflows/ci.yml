@@ -1,4 +1,4 @@
-name: 'CI: typedoc-plugin-external-module-name'
+name: 'CI'
 
 on: [push, pull_request]
 
