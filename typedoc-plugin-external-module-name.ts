@@ -110,7 +110,8 @@ export class ExternalModuleNamePlugin extends ConverterComponent {
 
     /** Process options */
     const option = this.application.options.getValue('disableAutoModuleName');
-    this.disableAutoModuleName = option === 'true' || option === true;
+    const disableSources = this.application.options.getValue('disableSources');
+    this.disableAutoModuleName = option === 'true' || option === true || disableSources === true;
   }
 
   /**
@@ -126,12 +127,17 @@ export class ExternalModuleNamePlugin extends ConverterComponent {
     const preferred = /@preferred/.exec(comment) != null;
     // Look for @module
     const [, match] = /@module\s+([\w\u4e00-\u9fa5\.\-_/@"]+)/.exec(comment) || [];
-    // Make a guess based on enclosing directory structure
-    const filename = reflection.sources[0].file.fullFileName;
 
-    let guess = this.disableAutoModuleName ? undefined : path.dirname(path.relative(this.baseDir, filename));
-    if (guess === '.') {
-      guess = 'root';
+    let guess: string;
+    let filename: string;
+    if (!this.disableAutoModuleName) {
+      // Make a guess based on enclosing directory structure
+      filename = reflection.sources[0].file.fullFileName;
+      guess = this.disableAutoModuleName ? undefined : path.dirname(path.relative(this.baseDir, filename));
+
+      if (guess === '.') {
+        guess = 'root';
+      }
     }
 
     // Try the custom function
