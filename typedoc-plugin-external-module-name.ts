@@ -6,11 +6,12 @@ import { Component, ConverterComponent } from 'typedoc/dist/lib/converter/compon
 import { Context } from 'typedoc/dist/lib/converter/context';
 import { Converter } from 'typedoc/dist/lib/converter/converter';
 import { Comment } from 'typedoc/dist/lib/models';
-import { Reflection, ReflectionKind } from 'typedoc/dist/lib/models/reflections/abstract';
+import { Reflection } from 'typedoc/dist/lib/models/reflections/abstract';
 import { ContainerReflection } from 'typedoc/dist/lib/models/reflections/container';
 import { DeclarationReflection } from 'typedoc/dist/lib/models/reflections/declaration';
 import {
   createChildReflection,
+  getCommonParent,
   isModuleOrNamespace,
   removeReflection,
   removeTags,
@@ -88,25 +89,9 @@ export class ExternalModuleNamePlugin extends ConverterComponent {
   }
 
   private onBegin(context: Context) {
-    /** Get the program entry points */
-    const dir = context.program.getCurrentDirectory();
-    const rootFileNames = context.program.getRootFileNames() ?? [];
     const options = context.getCompilerOptions();
 
-    function commonPrefix(string1: string, string2: string) {
-      let idx = 0;
-      while (idx < string1.length && string1[idx] === string2[idx]) {
-        idx++;
-      }
-      return string1.substr(0, idx);
-    }
-
-    const commonParent = rootFileNames.reduce(
-      (acc, entry) => commonPrefix(acc, path.dirname(path.resolve(dir, entry))),
-      path.resolve(rootFileNames[0] ?? dir),
-    );
-
-    this.baseDir = options.rootDir || options.baseUrl || commonParent;
+    this.baseDir = options.rootDir || options.baseUrl || getCommonParent(context);
 
     /** Process options */
     const option = this.application.options.getValue('disableAutoModuleName');

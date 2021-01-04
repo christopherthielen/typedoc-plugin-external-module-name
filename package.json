@@ -24,7 +24,7 @@
     "semver": "^7.1.1"
   },
   "peerDependencies": {
-    "typedoc": ">=0.7.0 <0.20.0"
+    "typedoc": ">=0.7.0 <0.21.0"
   },
   "devDependencies": {
     "@types/handlebars": "^4.0.37",
