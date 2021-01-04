@@ -1,12 +1,8 @@
 {
   "compilerOptions": {
-    "moduleResolution": "node",
-    "allowJs": true,
-    "module": "umd",
-    "target": "es2015",
-    "outDir": "./",
-    "experimentalDecorators": true
+    "module": "commonjs",
+    "skipLibCheck": true,
+    "typeRoots": ["typings"]
   },
-  "files": ["typedoc-plugin-external-module-name.ts", "getRawComment.ts"],
-  "exclude": ["node_modules"]
+  "files": ["src/index.ts"]
 }

@@ -1,8 +1,0 @@
-{
-  "compilerOptions": {
-    "module": "commonjs",
-    "skipLibCheck": true,
-    "typeRoots": ["typings"]
-  },
-  "files": ["src/automatic/index.ts"]
-}

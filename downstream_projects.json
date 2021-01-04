@@ -1,6 +1,0 @@
-{
-  "projects": {
-    "test": "./test"
-  },
-  "nohoist": ["**/typedoc-plugin-external-module-name"]
-}

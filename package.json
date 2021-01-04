@@ -1,46 +1,11 @@
 {
-  "name": "typedoc-plugin-external-module-name",
-  "version": "4.0.6",
-  "description": "Specify the Typedoc Module of a file using @module annotation",
-  "main": "index.js",
-  "scripts": {
-    "build": "tsc",
-    "test": "./test/useTypedocVersion.js && ./test/banner.js && test_downstream_projects",
-    "release": "release",
-    "prepublishOnly": "npm run build"
-  },
-  "keywords": [
-    "typedocplugin",
-    "typedoc"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/christopherthielen/typedoc-plugin-external-module-name"
-  },
-  "author": "Chris Thielen",
+  "name": "bugreport",
+  "version": "1.0.0",
+  "repository": "git@github.com:christopherthielen/typedoc-plugin-external-module-name.git",
+  "author": "Chris Thielen <github@sandgnat.com>",
   "license": "MIT",
-  "dependencies": {
-    "lodash": "^4.1.2",
-    "semver": "^7.1.1"
-  },
-  "peerDependencies": {
-    "typedoc": ">=0.7.0 <0.21.0"
-  },
   "devDependencies": {
-    "@types/handlebars": "^4.0.37",
-    "@types/lodash": "^4.1.6",
-    "@types/node": "^13.1.6",
-    "@types/semver": "^7.1.0",
-    "@uirouter/publish-scripts": "^2.3.24",
-    "husky": "^4.2.5",
-    "prettier": "^2.0.5",
-    "pretty-quick": "^3.1.0",
-    "typedoc": "0.17.6",
-    "typescript": ">=3.8.3"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged"
-    }
+    "typedoc": "0.20.11",
+    "typescript": "^4.1.3"
   }
 }
