@@ -127,7 +127,7 @@ export class ExternalModuleNamePlugin extends ConverterComponent {
    */
   private getModuleName(context: Context, reflection: Reflection, node): [string, boolean] {
     const comment = getRawComment(node);
-    const preferred = /@preferred/.exec(comment) != null;
+    const preferred = /@preferred/.exec(comment) !== null;
     // Look for @module
     const [, match] = /@module\s+([\w\u4e00-\u9fa5\.\-_/@"]+)/.exec(comment) || [];
 
@@ -160,7 +160,7 @@ export class ExternalModuleNamePlugin extends ConverterComponent {
         // Set up a list of renames operations to perform when the resolve phase starts
         this.moduleRenames.push({
           renameTo: moduleName,
-          preferred: preferred != null,
+          preferred: preferred,
           symbol: node.symbol,
           reflection: <ContainerReflection>reflection,
         });
