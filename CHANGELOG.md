@@ -1,3 +1,13 @@
+## 4.0.6 (2021-01-04)
+[Compare `typedoc-plugin-external-module-name` versions 4.0.5 and 4.0.6](https://github.com/christopherthielen/typedoc-plugin-external-module-name/compare/4.0.5...4.0.6)
+
+### Bug Fixes
+
+* **preferred:** Fix preferred flag on modules ([83a3281](https://github.com/christopherthielen/typedoc-plugin-external-module-name/commit/83a3281)), closes [#554](https://github.com/christopherthielen/typedoc-plugin-external-module-name/issues/554)
+
+
+
+
 ## 4.0.5 (2020-12-20)
 [Compare `typedoc-plugin-external-module-name` versions 4.0.4 and 4.0.5](https://github.com/christopherthielen/typedoc-plugin-external-module-name/compare/4.0.4...4.0.5)
 
